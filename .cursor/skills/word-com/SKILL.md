@@ -47,6 +47,16 @@ OpenWorker：`load_skill("Word文档操作")` 与 `load_skill("CUPK本科论文�
 
 详见 [scenarios/form-fill.md](scenarios/form-fill.md)。
 
+## 稳定反馈契约（必守）
+
+体系说明见仓库 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。本 skill 执行时：
+
+1. **入口**：用户说 `/word`、Word、docx → 用本 skill；说 WPS/金山 → **转** [wps-com](../wps-com/SKILL.md)，不静默混用。
+2. **场景表命中即停**（下一节）；缺文件路径 / 缺「改哪一段」→ 先问再跑脚本。
+3. **禁跳步**：填表必须 inspect → fill → `--draft`；润色必须 `minimal_revision`（禁止整段覆盖）；原文件只读。
+4. **回复骨架**（每次）：判定场景 → 已做（脚本）→ 产物路径 → 待确认 → 下一步。失败同样结构，写明停点。
+5. **不** AcceptAll；填表默认不定稿，确认后再 `--save`。
+
 ## 场景判定（Agent 先看用户意图）
 
 按顺序匹配，命中即停：

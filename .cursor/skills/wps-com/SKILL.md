@@ -45,6 +45,16 @@ OpenWorker：`load_skill("wps-com")` 得 `resources_path`；**用户来稿只读
 
 详见 [scenarios/form-fill.md](scenarios/form-fill.md)。
 
+## 稳定反馈契约（必守）
+
+体系说明见仓库 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。本 skill 执行时：
+
+1. **入口**：用户说 `/wps`、WPS、金山、Kwps → 用本 skill；说 Microsoft Word → **转** [word-com](../word-com/SKILL.md)。**永不**回退 `Word.Application`。
+2. **场景表命中即停**（下一节）；缺路径 / 未装 WPS → 报错说明，不假装成功。
+3. **禁跳步**：填表 inspect → fill → `--draft`；润色走 `minimal_revision`；原文件只读；stdout 须能见 `backend: Kwps.Application`（或 `wps.Application`）。
+4. **回复骨架**（每次）：判定场景 → 已做 → 产物路径 → 待确认 → 下一步。
+5. **不** AcceptAll；填表默认不定稿。
+
 ## 场景判定（Agent 先看用户意图）
 
 按顺序匹配，命中即停：

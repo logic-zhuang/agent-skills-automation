@@ -14,6 +14,14 @@ source: repo
 
 `resources_path` 来自 `load_skill("CUPK本科论文套版")`（本目录；技能目录名仍为 `cupk-thesis-format`）。脚本路径用 `/`。Shell cwd = OpenWorker 会话工作区。
 
+## 稳定反馈契约（摘要）
+
+全体系见 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。套版时：
+
+1. **入口**：`/thesis`、石大/CUPK/毕设格式 → 本 skill；COM 默认 [Word文档操作](../word-com/SKILL.md)；用户明确 WPS 时改加载 wps-com 并改脚本路径。
+2. **禁跳步**：inspect_source → clone 可填写模板 → cover / fill-section…；**不要**在用户原稿上直接改格式；MD 来稿先 word-com/wps-com 的 `md_to_docx`。
+3. **回复骨架**：判定套版 → 已执行的 convert_ops 步骤 → 输出 docx 路径 → 待人工核对页眉页码 → 下一步。
+
 ## 路径
 
 | 资源 | 位置 |

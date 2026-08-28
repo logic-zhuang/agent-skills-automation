@@ -1,14 +1,26 @@
 ---
 name: CUPK本科论文套版
-description: 将本科论文 Word（.doc/.docx）转为中国石油大学（北京）克拉玛依校区 2023 格式：复制可填写模板，填充封面、中英文摘要与正文，处理图表题注、OMath、页眉页码。用户要求论文套版、石大/克拉玛依毕设格式，或附上待排版论文时使用。
+description: 将本科论文 Word（.doc/.docx）转为中国石油大学（北京）克拉玛依校区 2023 格式。依赖 Word文档操作 执行 COM。用户要求论文套版、石大/克拉玛依毕设格式时使用；须与 Word文档操作 同时加载。
+requires:
+  - Word文档操作
 source: repo
 ---
 
 # CUPK 本科论文套版
 
-把用户来稿变成克拉玛依校区 2023 本科格式。版式见 [rules.md](rules.md)；逐步操作见 [convert.md](convert.md)。Word COM 遵守 [Word文档操作](../word-com/SKILL.md)。
+把用户来稿变成克拉玛依校区 2023 本科格式。版式见 [rules.md](rules.md)；逐步操作见 [convert.md](convert.md)。
 
-`resources_path` 来自 `load_skill("CUPK本科论文套版")`（本目录；技能目录名仍为 `cupk-thesis-format`）。脚本路径用 `/`。Shell cwd = OpenWorker 会话工作区。勿 `cd` 到 `resources_path`；`list_files` 若报超出范围则改用 shell。
+**依赖 [Word文档操作](../word-com/SKILL.md)**：会话须同时加载 `Word文档操作`（COM 执行层）与本 skill（学校规则）。Open/Range/Save/TrackRevisions 遵 Word文档操作；套版流程见本 skill `convert.md`。
+
+`resources_path` 来自 `load_skill("CUPK本科论文套版")`（本目录；技能目录名仍为 `cupk-thesis-format`）。脚本路径用 `/`。Shell cwd = OpenWorker 会话工作区。
+
+## 稳定反馈契约（摘要）
+
+全体系见 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。套版时：
+
+1. **入口**：`/thesis`、石大/CUPK/毕设格式 → 本 skill；COM 默认 [Word文档操作](../word-com/SKILL.md)；用户明确 WPS 时改加载 wps-com 并改脚本路径。
+2. **禁跳步**：inspect_source → clone 可填写模板 → cover / fill-section…；**不要**在用户原稿上直接改格式；MD 来稿先 word-com/wps-com 的 `md_to_docx`。
+3. **回复骨架**：判定套版 → 已执行的 convert_ops 步骤 → 输出 docx 路径 → 待人工核对页眉页码 → 下一步。
 
 ## 路径
 

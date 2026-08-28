@@ -38,6 +38,16 @@ OpenWorker：`load_skill("Excel表格操作")` 得 `resources_path`；**用户�
 | OpenWorker | 用户上传 / 绝对路径 | **会话工作区**（临时对话文件夹） |
 | Cursor 本地演示 | Downloads / 样例 | `examples/.../_out/`（**临时**；正式 skill 不保留 examples） |
 
+## 稳定反馈契约（必守）
+
+体系说明见仓库 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。本 skill 执行时：
+
+1. **入口**：用户说 `/excel`、xlsx、工作簿填表 → 用本 skill；`.docx` 表 → **转** word-com / wps-com。
+2. **场景表命中即停**；缺工作表名 / 路径 → 先问或先 `inspect_sheet`。
+3. **禁跳步**：parse_profile → inspect → Agent fill → `--draft` 克隆填写；**禁止**对用户原路径原地写。
+4. **回复骨架**（每次）：判定场景 → 已做 → 产物路径（draft.xlsx）→ 待确认 → 下一步。
+5. Excel **无** Word 级 TrackRevisions；用 draft + 确认代替。
+
 ## 场景判定（Agent 先看用户意图）
 
 按顺序匹配，命中即停：

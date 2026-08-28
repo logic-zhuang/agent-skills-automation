@@ -5,13 +5,16 @@
 ## 流程
 
 ```
-create_hybrid_template.py → hybrid.json → hybrid_ops.py → Save
+已有申请书框架.docx + hybrid.json → hybrid_ops.py → Save
+（可选）create_hybrid_template.py 生成空白框架供本地演示
 ```
 
 ## 命令
 
 ```bash
+# 可选：生成空白模板
 python <resources_path>/scripts/create_hybrid_template.py
+# 必选：按 JSON 填写
 python <resources_path>/scripts/hybrid_ops.py "申请书.docx" --json hybrid.json
 ```
 

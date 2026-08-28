@@ -9,7 +9,15 @@ source: repo
 仅通过命令窗口驱动正在运行的 Stata 会话，读取结果窗格并导出或截图图形。
 **不得**使用菜单、对话框、`ui_map` 或 `roadmaps`。
 
-`resources_path` 来自 `load_skill("Stata命令行分析")`（本目录；技能目录名仍为 `stata-cli`）。脚本路径用 `/`。说明见 [README.md](README.md)。Shell cwd 保持会话工作区；勿 `cd` 到 `resources_path`。
+`resources_path` 来自 `load_skill("Stata命令行分析")`（本目录；技能目录名仍为 `stata-cli`）。脚本路径用 `/`。说明见 [README.md](README.md)。
+
+## 稳定反馈契约（摘要）
+
+全体系见 [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。分析时：
+
+1. **入口**：`/stata`、回归/描述统计/do → 本 skill；勿与 Soft Pack `stata_ui` 混用。
+2. **禁跳步**：新任务先 `new-task`；一次一条 `run`；等 JSON 返回再下一条；用 `materials search` 查语法，不整文件灌进上下文。
+3. **回复骨架**：判定任务 → 已跑命令摘要 → 关键数字 + `out_dir` 图路径 → 待确认假设/下一步模型；**不要**整窗 Results 粘贴。
 
 ## 快速流程
 

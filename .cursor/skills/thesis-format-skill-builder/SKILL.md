@@ -26,7 +26,7 @@ Skill。最终产物不是一份排版说明，而是一个能根据来稿执行
 - 需要 Python 依赖时在 skill 目录放 `requirements.txt`，并在 README 说明安装。
 - 分发位置：`sources/desktop-rip/<skill-name>/`；用户安装：
   `python scripts/install_openworker_skills.py --desktop`。
-- Frontmatter 建议保留 `source: repo`（与 `stata-cli` 等同包 skill 一致）。
+- Frontmatter 建议保留 `source: repo`（与 `Stata命令行分析` 等同包 skill 一致）。
 
 ## 设计边界
 
@@ -37,7 +37,9 @@ Skill。最终产物不是一份排版说明，而是一个能根据来稿执行
 - 学校的具体字号、页边距、章节顺序、模板名称等必须来自用户提供的范本、
   格式手册或可核验的官方材料；不能把 CUPK 规则泛化给其他学校。
 - Word 文件在 Windows 上优先使用 COM；通用 COM 规则见
-  [word-com](../word-com/SKILL.md)。
+  [word-com](../word-com/SKILL.md)。WPS 环境可对标 [wps-com](../wps-com/SKILL.md)
+ （ProgID 不同，产品流水线同构）。运行时稳定反馈契约见
+  [SKILLS_SYSTEM.md](../SKILLS_SYSTEM.md)。
 - 参考 CUPK 的组织方式：主 `SKILL.md` 负责触发和总流程，`rules.md` 负责规范，
   `convert.md` 负责执行细节，`scripts/` 负责脆弱的自动化操作，`templates/`
   保存可直接复制的底板。
