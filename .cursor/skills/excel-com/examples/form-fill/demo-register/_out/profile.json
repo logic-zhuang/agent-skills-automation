@@ -1,0 +1,11 @@
+{
+  "student": {
+    "name": "李俊杰",
+    "student_id": "2024216758",
+    "college": "文理学院",
+    "major": "计算机科学与技术",
+    "phone": "13912345678",
+    "email": "lijj@example.com"
+  },
+  "missing": []
+}

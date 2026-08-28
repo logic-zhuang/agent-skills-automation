@@ -1,0 +1,439 @@
+{
+  "schema": "excel-com/form-inspect/v1",
+  "sheets": [
+    {
+      "index": 1,
+      "name": "Sheet1",
+      "used": {
+        "r0": 1,
+        "c0": 2,
+        "r1": 11,
+        "c1": 20
+      },
+      "slot_count": 20
+    }
+  ],
+  "slots": [
+    {
+      "slot_id": "Sheet1!U1",
+      "sheet": "Sheet1",
+      "label": "备注",
+      "label_norm": "备注",
+      "label_address": "T1",
+      "address": "U1",
+      "row": 1,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U1"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!T2",
+      "sheet": "Sheet1",
+      "label": "如无补考，则不填。",
+      "label_norm": "如无补考，则不填。",
+      "label_address": "S2",
+      "address": "T2",
+      "row": 2,
+      "col": 20,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "T2"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S3",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R3",
+      "address": "S3",
+      "row": 3,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U3",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩1条",
+      "label_norm": "2024-2025学年交流生成绩1条",
+      "label_address": "T3",
+      "address": "U3",
+      "row": 3,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S4",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R4",
+      "address": "S4",
+      "row": 4,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U4",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩2条",
+      "label_norm": "2024-2025学年交流生成绩2条",
+      "label_address": "T4",
+      "address": "U4",
+      "row": 4,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S5",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R5",
+      "address": "S5",
+      "row": 5,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U5",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩3条",
+      "label_norm": "2024-2025学年交流生成绩3条",
+      "label_address": "T5",
+      "address": "U5",
+      "row": 5,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S6",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R6",
+      "address": "S6",
+      "row": 6,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U6",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩4条",
+      "label_norm": "2024-2025学年交流生成绩4条",
+      "label_address": "T6",
+      "address": "U6",
+      "row": 6,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S7",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R7",
+      "address": "S7",
+      "row": 7,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U7",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩5条",
+      "label_norm": "2024-2025学年交流生成绩5条",
+      "label_address": "T7",
+      "address": "U7",
+      "row": 7,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S8",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R8",
+      "address": "S8",
+      "row": 8,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U8",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩6条",
+      "label_norm": "2024-2025学年交流生成绩6条",
+      "label_address": "T8",
+      "address": "U8",
+      "row": 8,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S9",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R9",
+      "address": "S9",
+      "row": 9,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U9",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩7条",
+      "label_norm": "2024-2025学年交流生成绩7条",
+      "label_address": "T9",
+      "address": "U9",
+      "row": 9,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S10",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R10",
+      "address": "S10",
+      "row": 10,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S10"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U10",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩8条",
+      "label_norm": "2024-2025学年交流生成绩8条",
+      "label_address": "T10",
+      "address": "U10",
+      "row": 10,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U10"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S11",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R11",
+      "address": "S11",
+      "row": 11,
+      "col": 19,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S11"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U11",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩9条（演示新增）",
+      "label_norm": "2024-2025学年交流生成绩9条（演示新增",
+      "label_address": "T11",
+      "address": "U11",
+      "row": 11,
+      "col": 21,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.75,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U11"
+        }
+      ]
+    }
+  ],
+  "form_fingerprint": "e4253a28f5288a05"
+}

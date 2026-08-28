@@ -1,0 +1,2 @@
+# excel-com scripts (Windows Excel COM)
+pywin32>=306

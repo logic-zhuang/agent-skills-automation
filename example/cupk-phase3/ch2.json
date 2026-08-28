@@ -1,0 +1,14 @@
+{
+  "heading": "第2章  研究方法",
+  "even_header": "第2章  研究方法",
+  "blocks": [
+    {
+      "style": "标题 2",
+      "text": "2.1  脚本流程"
+    },
+    {
+      "style": "正文",
+      "text": "流程包括 inspect_source、clone、cover、fill-section 与 finish。"
+    }
+  ]
+}

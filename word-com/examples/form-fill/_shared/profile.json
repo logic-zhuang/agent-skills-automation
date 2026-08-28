@@ -1,0 +1,33 @@
+{
+  "student": {
+    "name": "李俊杰",
+    "gender": "男",
+    "nation": "汉族",
+    "birthday": "2004年06月15日",
+    "student_id": "2024216758",
+    "id_number": "650102200406151234",
+    "college": "文理学院",
+    "major": "软件工程",
+    "class_name": "软工2401",
+    "political_status": "共青团员",
+    "political_join_date": "2022-09",
+    "native_place": "新疆乌鲁木齐",
+    "source_region": "新疆维吾尔自治区",
+    "hmt_status": "否",
+    "religion": "无",
+    "health": "健康",
+    "phone": "13912345678",
+    "high_school": "乌鲁木齐市第一中学",
+    "enrollment_date": "2022-09",
+    "foreign_language": "英语",
+    "education": "本科",
+    "schooling_length": "4年",
+    "application_reason": "本人学习态度端正，成绩排名位于专业前列，积极参与学科竞赛与志愿服务，符合中国石油奖学金申请条件。",
+    "comprehensive_ranking": true,
+    "score_rank": "5/128",
+    "rank": "5",
+    "rank_total": "128",
+    "required_courses": "38",
+    "required_passed": "38"
+  }
+}

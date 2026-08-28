@@ -1,0 +1,10 @@
+{
+  "heading": "前    言",
+  "even_header": "前    言",
+  "blocks": [
+    {
+      "style": "正文",
+      "text": "本测试来稿用于验证 convert_ops 脚本，不应直接在原稿上套版。"
+    }
+  ]
+}

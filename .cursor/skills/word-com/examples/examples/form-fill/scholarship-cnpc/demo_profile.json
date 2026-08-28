@@ -1,0 +1,24 @@
+{
+  "student": {
+    "name": "李俊杰",
+    "gender": "男",
+    "nation": "汉族",
+    "birthday": "2004-06",
+    "political_status": "共青团员",
+    "education": "本科",
+    "enrollment_date": "2022-09",
+    "major": "软件工程",
+    "schooling_length": "4年",
+    "phone": "13912345678",
+    "id_number": "650102200406151234",
+    "student_id": "2024216758",
+    "college": "文理学院",
+    "application_reason": "本人学习态度端正，成绩排名位于专业前列，积极参与学科竞赛与志愿服务，符合中国石油奖学金申请条件。",
+    "comprehensive_ranking": true,
+    "score_rank": "5/128",
+    "rank": "5",
+    "rank_total": "128",
+    "required_courses": "38",
+    "required_passed": "38"
+  }
+}

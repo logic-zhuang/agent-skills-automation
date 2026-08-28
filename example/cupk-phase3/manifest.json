@@ -1,0 +1,32 @@
+[
+  {
+    "file": "preface.json",
+    "section": 5,
+    "heading": "前    言"
+  },
+  {
+    "file": "ch1.json",
+    "section": 6,
+    "heading": "第1章  绪论"
+  },
+  {
+    "file": "ch2.json",
+    "section": 7,
+    "heading": "第2章  研究方法"
+  },
+  {
+    "file": "conclusion.json",
+    "section": 11,
+    "heading": "结    论"
+  },
+  {
+    "file": "refs.json",
+    "section": 12,
+    "heading": "参考文献"
+  },
+  {
+    "file": "thanks.json",
+    "section": 14,
+    "heading": "致    谢"
+  }
+]

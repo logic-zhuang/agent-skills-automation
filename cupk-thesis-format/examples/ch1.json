@@ -1,0 +1,9 @@
+{
+  "heading": "第1章  绪论",
+  "even_header": "第1章  绪论",
+  "blocks": [
+    {"style": "标题 2", "text": "1.1  研究目的与意义"},
+    {"style": "正文", "text": "正文内容……"},
+    {"type": "omath", "linear": "k=a\\phi^b/S_wi^c", "number": "(1.1)"}
+  ]
+}

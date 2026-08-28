@@ -1,0 +1,366 @@
+{
+  "schema": "excel-com/form-inspect/v1.1",
+  "sheets": [
+    {
+      "index": 1,
+      "name": "登记表",
+      "used": {
+        "r0": 1,
+        "c0": 1,
+        "r1": 6,
+        "c1": 1
+      },
+      "slot_count": 6,
+      "layout_hint": "label_left_value_right"
+    }
+  ],
+  "facts": {
+    "sheets": [
+      {
+        "sheet": "登记表",
+        "used": {
+          "r0": 1,
+          "c0": 1,
+          "r1": 6,
+          "c1": 1
+        },
+        "cells": [
+          {
+            "sheet": "登记表",
+            "row": 1,
+            "col": 1,
+            "address": "A1",
+            "text": "姓名",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "登记表",
+            "row": 2,
+            "col": 1,
+            "address": "A2",
+            "text": "学号",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "登记表",
+            "row": 3,
+            "col": 1,
+            "address": "A3",
+            "text": "学院",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "登记表",
+            "row": 4,
+            "col": 1,
+            "address": "A4",
+            "text": "专业",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "登记表",
+            "row": 5,
+            "col": 1,
+            "address": "A5",
+            "text": "联系电话",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "登记表",
+            "row": 6,
+            "col": 1,
+            "address": "A6",
+            "text": "邮箱",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": true
+          }
+        ],
+        "cell_count": 6,
+        "layout_hint": "label_left_value_right",
+        "note": "facts only; Agent chooses write/append. suggestions/slots are optional heuristics."
+      }
+    ],
+    "layout_hint": "label_left_value_right"
+  },
+  "suggestions": [
+    {
+      "slot_id": "登记表!B1",
+      "sheet": "登记表",
+      "label": "姓名",
+      "label_norm": "姓名",
+      "label_address": "A1",
+      "address": "B1",
+      "row": 1,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B1"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B2",
+      "sheet": "登记表",
+      "label": "学号",
+      "label_norm": "学号",
+      "label_address": "A2",
+      "address": "B2",
+      "row": 2,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B2"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B3",
+      "sheet": "登记表",
+      "label": "学院",
+      "label_norm": "学院",
+      "label_address": "A3",
+      "address": "B3",
+      "row": 3,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B3"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B4",
+      "sheet": "登记表",
+      "label": "专业",
+      "label_norm": "专业",
+      "label_address": "A4",
+      "address": "B4",
+      "row": 4,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B4"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B5",
+      "sheet": "登记表",
+      "label": "联系电话",
+      "label_norm": "联系电话",
+      "label_address": "A5",
+      "address": "B5",
+      "row": 5,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B5"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B6",
+      "sheet": "登记表",
+      "label": "邮箱",
+      "label_norm": "邮箱",
+      "label_address": "A6",
+      "address": "B6",
+      "row": 6,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B6"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot_id": "登记表!B1",
+      "sheet": "登记表",
+      "label": "姓名",
+      "label_norm": "姓名",
+      "label_address": "A1",
+      "address": "B1",
+      "row": 1,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B1"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B2",
+      "sheet": "登记表",
+      "label": "学号",
+      "label_norm": "学号",
+      "label_address": "A2",
+      "address": "B2",
+      "row": 2,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B2"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B3",
+      "sheet": "登记表",
+      "label": "学院",
+      "label_norm": "学院",
+      "label_address": "A3",
+      "address": "B3",
+      "row": 3,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B3"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B4",
+      "sheet": "登记表",
+      "label": "专业",
+      "label_norm": "专业",
+      "label_address": "A4",
+      "address": "B4",
+      "row": 4,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B4"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B5",
+      "sheet": "登记表",
+      "label": "联系电话",
+      "label_norm": "联系电话",
+      "label_address": "A5",
+      "address": "B5",
+      "row": 5,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B5"
+        }
+      ]
+    },
+    {
+      "slot_id": "登记表!B6",
+      "sheet": "登记表",
+      "label": "邮箱",
+      "label_norm": "邮箱",
+      "label_address": "A6",
+      "address": "B6",
+      "row": 6,
+      "col": 2,
+      "current": "",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "reason": "label_left_empty_right",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "登记表",
+          "address": "B6"
+        }
+      ]
+    }
+  ],
+  "form_fingerprint": "5ab89a9bea6a8906",
+  "agent_note": "Read facts.layout_hint. table_rows → Agent append_row; suggestions optional."
+}

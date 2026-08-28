@@ -1,0 +1,14 @@
+{
+  "title_en": "Phase 3 Pipeline Test Thesis",
+  "blocks": [
+    {
+      "style": "正文",
+      "text": "This document exercises the CUPK undergraduate thesis formatting pipeline. It includes bilingual abstracts, two chapters, a conclusion, references, and acknowledgements."
+    },
+    {
+      "style": "正文",
+      "text": "\f"
+    }
+  ],
+  "key_words": "formatting test; Word COM; undergraduate thesis"
+}

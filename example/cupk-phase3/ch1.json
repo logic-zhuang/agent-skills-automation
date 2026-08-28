@@ -1,0 +1,19 @@
+{
+  "heading": "第1章  绪论",
+  "even_header": "第1章  绪论",
+  "blocks": [
+    {
+      "style": "标题 2",
+      "text": "1.1  研究背景"
+    },
+    {
+      "style": "正文",
+      "text": "本科毕业论文排版需要严格遵循校区格式范本，COM 自动化可降低手工出错率。"
+    },
+    {
+      "type": "omath",
+      "linear": "k=a\\phi^b/S_wi^c",
+      "number": "(1.1)"
+    }
+  ]
+}

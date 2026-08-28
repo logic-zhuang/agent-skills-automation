@@ -1,0 +1,131 @@
+{
+  "schema": "excel-com/plan/v1.1",
+  "layout_hint": "label_left_value_right",
+  "matched": [
+    {
+      "slot_id": "登记表!B1",
+      "label": "姓名",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "name",
+      "value": "李俊杰",
+      "sheet": "登记表",
+      "address": "B1"
+    },
+    {
+      "slot_id": "登记表!B2",
+      "label": "学号",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "student_id",
+      "value": "2024216758",
+      "sheet": "登记表",
+      "address": "B2"
+    },
+    {
+      "slot_id": "登记表!B3",
+      "label": "学院",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "college",
+      "value": "文理学院",
+      "sheet": "登记表",
+      "address": "B3"
+    },
+    {
+      "slot_id": "登记表!B4",
+      "label": "专业",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "major",
+      "value": "计算机科学与技术",
+      "sheet": "登记表",
+      "address": "B4"
+    },
+    {
+      "slot_id": "登记表!B5",
+      "label": "联系电话",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "phone",
+      "value": "13912345678",
+      "sheet": "登记表",
+      "address": "B5"
+    },
+    {
+      "slot_id": "登记表!B6",
+      "label": "邮箱",
+      "fill_mode": "single",
+      "confidence": 0.9,
+      "kb_key": "email",
+      "value": "lijj@example.com",
+      "sheet": "登记表",
+      "address": "B6"
+    }
+  ],
+  "unmatched_slots": [],
+  "needs_confirm": [],
+  "unmatched_kb": [],
+  "review_required": true,
+  "form_fingerprint": "5ab89a9bea6a8906",
+  "fill": {
+    "schema": "excel-com/fill/v1.1",
+    "cells": [
+      {
+        "sheet": "登记表",
+        "address": "B1",
+        "text": "李俊杰",
+        "slot_id": "登记表!B1",
+        "label": "姓名",
+        "op": "write_cell"
+      },
+      {
+        "sheet": "登记表",
+        "address": "B2",
+        "text": "2024216758",
+        "slot_id": "登记表!B2",
+        "label": "学号",
+        "op": "write_cell"
+      },
+      {
+        "sheet": "登记表",
+        "address": "B3",
+        "text": "文理学院",
+        "slot_id": "登记表!B3",
+        "label": "学院",
+        "op": "write_cell"
+      },
+      {
+        "sheet": "登记表",
+        "address": "B4",
+        "text": "计算机科学与技术",
+        "slot_id": "登记表!B4",
+        "label": "专业",
+        "op": "write_cell"
+      },
+      {
+        "sheet": "登记表",
+        "address": "B5",
+        "text": "13912345678",
+        "slot_id": "登记表!B5",
+        "label": "联系电话",
+        "op": "write_cell"
+      },
+      {
+        "sheet": "登记表",
+        "address": "B6",
+        "text": "lijj@example.com",
+        "slot_id": "登记表!B6",
+        "label": "邮箱",
+        "op": "write_cell"
+      }
+    ],
+    "ops": []
+  },
+  "agent_note": "Execute via --fill Agent plan, or --auto-suggest for high-confidence only.",
+  "verification": {
+    "ok": 6,
+    "total": 6,
+    "mismatches": []
+  }
+}

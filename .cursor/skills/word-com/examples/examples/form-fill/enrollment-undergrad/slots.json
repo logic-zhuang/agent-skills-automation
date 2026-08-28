@@ -1,0 +1,1175 @@
+{
+  "schema": "word-com/form-inspect/v2",
+  "tables": [
+    {
+      "table": 1,
+      "rows": 14,
+      "cols": 9,
+      "slot_count": 17,
+      "inaccessible_count": 47,
+      "inaccessible": [
+        {
+          "table": 1,
+          "row": 2,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 2,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 2,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 3,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 3,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 3,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 4,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 4,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 4,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 5,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 5,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 5,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 6,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 6,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 6,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 7,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 7,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 7,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 8,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 8,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 8,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 2
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 3
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 4
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 5
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 6
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 9,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 10,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 10,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 10,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 11,
+          "col": 5
+        },
+        {
+          "table": 1,
+          "row": 11,
+          "col": 6
+        },
+        {
+          "table": 1,
+          "row": 11,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 11,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 11,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 3
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 4
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 5
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 6
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 7
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 8
+        },
+        {
+          "table": 1,
+          "row": 12,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 13,
+          "col": 9
+        },
+        {
+          "table": 1,
+          "row": 14,
+          "col": 1
+        },
+        {
+          "table": 1,
+          "row": 14,
+          "col": 9
+        }
+      ]
+    }
+  ],
+  "table_count": 1,
+  "cells": [
+    {
+      "table": 1,
+      "row": 1,
+      "col": 1,
+      "text": "学号"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 3,
+      "text": "姓名"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 5,
+      "text": "性别"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 7,
+      "text": "民族"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 8,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "col": 9,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 1,
+      "text": "出生日期"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 2,
+      "text": "年\t月\t日"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 3,
+      "text": "身份证号码"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 5,
+      "text": "港澳台侨"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 1,
+      "text": "籍贯"
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 3,
+      "text": "政治面貌"
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 5,
+      "text": "加入年月"
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "col": 6,
+      "text": "年\t月"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 1,
+      "text": "宗教信仰"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 3,
+      "text": "信教开始时间"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 5,
+      "text": "健康状况"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 1,
+      "text": "学院"
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 3,
+      "text": "专业（类）"
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 5,
+      "text": "班级"
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 1,
+      "text": "家长姓名"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 2,
+      "text": "与本人关系"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 3,
+      "text": "工作单位及职务"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 4,
+      "text": "联系电话"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 5,
+      "text": "家庭住址"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "col": 6,
+      "text": "邮政编码"
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 1,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 3,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 5,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 1,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 3,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 5,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 8,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 9,
+      "col": 1,
+      "text": "招\t生\t情\t况"
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 1,
+      "text": "毕业中学"
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 3,
+      "text": "生源地"
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 5,
+      "text": "入学年月"
+    },
+    {
+      "table": 1,
+      "row": 10,
+      "col": 6,
+      "text": "年\t月"
+    },
+    {
+      "table": 1,
+      "row": 11,
+      "col": 1,
+      "text": "考生类别"
+    },
+    {
+      "table": 1,
+      "row": 11,
+      "col": 2,
+      "text": "□农应\t□农往\t□城应\t□城往"
+    },
+    {
+      "table": 1,
+      "row": 11,
+      "col": 3,
+      "text": "乘车区间"
+    },
+    {
+      "table": 1,
+      "row": 11,
+      "col": 4,
+      "text": "克拉玛依 至"
+    },
+    {
+      "table": 1,
+      "row": 12,
+      "col": 1,
+      "text": "招生类别"
+    },
+    {
+      "table": 1,
+      "row": 12,
+      "col": 2,
+      "text": "□统一招生\t  □国家专项 \t □高校专项 \t □高水平运动队\t    □港澳台侨"
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 1,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 2,
+      "text": "语文"
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 3,
+      "text": "数学"
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 4,
+      "text": "外语（语种）"
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 5,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 7,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 13,
+      "col": 8,
+      "text": "总分"
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 2,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 3,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 4,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 5,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 6,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 7,
+      "text": ""
+    },
+    {
+      "table": 1,
+      "row": 14,
+      "col": 8,
+      "text": ""
+    }
+  ],
+  "cell_count": 79,
+  "slots": [
+    {
+      "slot_id": "t1_r1_c2",
+      "table": 1,
+      "row": 1,
+      "col": 2,
+      "cols": [
+        2
+      ],
+      "targets": [
+        {
+          "row": 1,
+          "col": 2
+        }
+      ],
+      "grid_length": 1,
+      "label": "学号",
+      "label_norm": "学号",
+      "label_row": 1,
+      "label_col": 1,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r1_c4",
+      "table": 1,
+      "row": 1,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 1,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "姓名",
+      "label_norm": "姓名",
+      "label_row": 1,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r1_c6",
+      "table": 1,
+      "row": 1,
+      "col": 6,
+      "cols": [
+        6
+      ],
+      "targets": [
+        {
+          "row": 1,
+          "col": 6
+        }
+      ],
+      "grid_length": 1,
+      "label": "性别",
+      "label_norm": "性别",
+      "label_row": 1,
+      "label_col": 5,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r1_c8",
+      "table": 1,
+      "row": 1,
+      "col": 8,
+      "cols": [
+        8
+      ],
+      "targets": [
+        {
+          "row": 1,
+          "col": 8
+        }
+      ],
+      "grid_length": 1,
+      "label": "民族",
+      "label_norm": "民族",
+      "label_row": 1,
+      "label_col": 7,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r2_c4",
+      "table": 1,
+      "row": 2,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 2,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "身份证号码",
+      "label_norm": "身份证号码",
+      "label_row": 2,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r2_c6",
+      "table": 1,
+      "row": 2,
+      "col": 6,
+      "cols": [
+        6
+      ],
+      "targets": [
+        {
+          "row": 2,
+          "col": 6
+        }
+      ],
+      "grid_length": 1,
+      "label": "港澳台侨",
+      "label_norm": "港澳台侨",
+      "label_row": 2,
+      "label_col": 5,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r3_c2",
+      "table": 1,
+      "row": 3,
+      "col": 2,
+      "cols": [
+        2
+      ],
+      "targets": [
+        {
+          "row": 3,
+          "col": 2
+        }
+      ],
+      "grid_length": 1,
+      "label": "籍贯",
+      "label_norm": "籍贯",
+      "label_row": 3,
+      "label_col": 1,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r3_c4",
+      "table": 1,
+      "row": 3,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 3,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "政治面貌",
+      "label_norm": "政治面貌",
+      "label_row": 3,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r4_c2",
+      "table": 1,
+      "row": 4,
+      "col": 2,
+      "cols": [
+        2
+      ],
+      "targets": [
+        {
+          "row": 4,
+          "col": 2
+        }
+      ],
+      "grid_length": 1,
+      "label": "宗教信仰",
+      "label_norm": "宗教信仰",
+      "label_row": 4,
+      "label_col": 1,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r4_c4",
+      "table": 1,
+      "row": 4,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 4,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "信教开始时间",
+      "label_norm": "信教开始时间",
+      "label_row": 4,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r4_c6",
+      "table": 1,
+      "row": 4,
+      "col": 6,
+      "cols": [
+        6
+      ],
+      "targets": [
+        {
+          "row": 4,
+          "col": 6
+        }
+      ],
+      "grid_length": 1,
+      "label": "健康状况",
+      "label_norm": "健康状况",
+      "label_row": 4,
+      "label_col": 5,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r5_c2",
+      "table": 1,
+      "row": 5,
+      "col": 2,
+      "cols": [
+        2
+      ],
+      "targets": [
+        {
+          "row": 5,
+          "col": 2
+        }
+      ],
+      "grid_length": 1,
+      "label": "学院",
+      "label_norm": "学院",
+      "label_row": 5,
+      "label_col": 1,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r5_c4",
+      "table": 1,
+      "row": 5,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 5,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "专业（类）",
+      "label_norm": "专业（类）",
+      "label_row": 5,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r5_c6",
+      "table": 1,
+      "row": 5,
+      "col": 6,
+      "cols": [
+        6
+      ],
+      "targets": [
+        {
+          "row": 5,
+          "col": 6
+        }
+      ],
+      "grid_length": 1,
+      "label": "班级",
+      "label_norm": "班级",
+      "label_row": 5,
+      "label_col": 5,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r10_c2",
+      "table": 1,
+      "row": 10,
+      "col": 2,
+      "cols": [
+        2
+      ],
+      "targets": [
+        {
+          "row": 10,
+          "col": 2
+        }
+      ],
+      "grid_length": 1,
+      "label": "毕业中学",
+      "label_norm": "毕业中学",
+      "label_row": 10,
+      "label_col": 1,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r10_c4",
+      "table": 1,
+      "row": 10,
+      "col": 4,
+      "cols": [
+        4
+      ],
+      "targets": [
+        {
+          "row": 10,
+          "col": 4
+        }
+      ],
+      "grid_length": 1,
+      "label": "生源地",
+      "label_norm": "生源地",
+      "label_row": 10,
+      "label_col": 3,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    },
+    {
+      "slot_id": "t1_r13_c5",
+      "table": 1,
+      "row": 13,
+      "col": 5,
+      "cols": [
+        5
+      ],
+      "targets": [
+        {
+          "row": 13,
+          "col": 5
+        }
+      ],
+      "grid_length": 1,
+      "label": "外语（语种）",
+      "label_norm": "外语（语种）",
+      "label_row": 13,
+      "label_col": 4,
+      "current": "",
+      "kind": "field",
+      "fill_mode": "single",
+      "confidence": 0.8,
+      "reason": "label+right_empty"
+    }
+  ],
+  "slot_count": 17,
+  "labels": [
+    "专业（类）",
+    "信教开始时间",
+    "健康状况",
+    "外语（语种）",
+    "姓名",
+    "学号",
+    "学院",
+    "宗教信仰",
+    "性别",
+    "政治面貌",
+    "毕业中学",
+    "民族",
+    "港澳台侨",
+    "班级",
+    "生源地",
+    "籍贯",
+    "身份证号码"
+  ],
+  "form_fingerprint": "697e43a85df97b7d"
+}

@@ -1,0 +1,270 @@
+{
+  "path": "D:\\Desktop\\desktop-rip\\test\\cupk-thesis\\thesis_source.docx",
+  "cover_table": {
+    "title": "Phase3 套版测试论文",
+    "college": "石油学院",
+    "major": "石油工程",
+    "name": "测试同学",
+    "advisor": "张老师 副教授"
+  },
+  "cover_hints": [
+    {
+      "i": 1,
+      "text": "题目"
+    },
+    {
+      "i": 7,
+      "text": "学院名称"
+    },
+    {
+      "i": 8,
+      "text": "石油学院"
+    },
+    {
+      "i": 10,
+      "text": "专业名称"
+    },
+    {
+      "i": 13,
+      "text": "学生姓名"
+    },
+    {
+      "i": 16,
+      "text": "指导教师"
+    },
+    {
+      "i": 19,
+      "text": "起止时间：2025 年 9 月 1 日 至 2026 年 6 月 15 日"
+    },
+    {
+      "i": 45,
+      "text": "感谢指导教师在测试方案设计中的帮助。"
+    }
+  ],
+  "keywords": [
+    {
+      "i": 23,
+      "text": "关键词：套版测试；Word COM；本科论文"
+    },
+    {
+      "i": 29,
+      "text": "Key Words: formatting test; Word COM; undergraduate thesis"
+    }
+  ],
+  "master_fields_to_drop": [],
+  "preamble": [
+    {
+      "style": "正文",
+      "text": "题目"
+    },
+    {
+      "style": "正文",
+      "text": "Phase3 套版测试论文"
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": "学院名称"
+    },
+    {
+      "style": "正文",
+      "text": "石油学院"
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": "专业名称"
+    },
+    {
+      "style": "正文",
+      "text": "石油工程"
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": "学生姓名"
+    },
+    {
+      "style": "正文",
+      "text": "测试同学"
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": "指导教师"
+    },
+    {
+      "style": "正文",
+      "text": "张老师 副教授"
+    },
+    {
+      "style": "正文",
+      "text": ""
+    },
+    {
+      "style": "正文",
+      "text": "起止时间：2025 年 9 月 1 日 至 2026 年 6 月 15 日"
+    },
+    {
+      "style": "正文",
+      "text": "\f"
+    }
+  ],
+  "chapters": [
+    {
+      "heading": "摘    要",
+      "style": "标题 1",
+      "i": 21,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "本文以 Phase 3 流水线为对象，验证 CUPK 本科论文套版脚本能否从来稿提取内容、克隆模板并按节填充。测试覆盖摘要、英文摘要、两章正文、结论、参考文献与致谢。"
+        },
+        {
+          "style": "正文",
+          "text": "关键词：套版测试；Word COM；本科论文"
+        },
+        {
+          "style": "正文",
+          "text": "\f"
+        }
+      ]
+    },
+    {
+      "heading": "Phase 3 Pipeline Test Thesis",
+      "style": "标题 1",
+      "i": 25,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "heading": "ABSTRACT",
+      "style": "标题 1",
+      "i": 27,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "This document exercises the CUPK undergraduate thesis formatting pipeline. It includes bilingual abstracts, two chapters, a conclusion, references, and acknowledgements."
+        },
+        {
+          "style": "正文",
+          "text": "Key Words: formatting test; Word COM; undergraduate thesis"
+        },
+        {
+          "style": "正文",
+          "text": "\f"
+        }
+      ]
+    },
+    {
+      "heading": "前    言",
+      "style": "标题 1",
+      "i": 31,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "本测试来稿用于验证 convert_ops 脚本，不应直接在原稿上套版。"
+        }
+      ]
+    },
+    {
+      "heading": "第1章  绪论",
+      "style": "标题 1",
+      "i": 33,
+      "blocks": [
+        {
+          "style": "标题 2",
+          "text": "1.1  研究背景"
+        },
+        {
+          "style": "正文",
+          "text": "本科毕业论文排版需要严格遵循校区格式范本，COM 自动化可降低手工出错率。"
+        },
+        {
+          "style": "正文",
+          "text": "k=a\\phi^b/S_wi^c          (1.1)"
+        }
+      ]
+    },
+    {
+      "heading": "第2章  研究方法",
+      "style": "标题 1",
+      "i": 37,
+      "blocks": [
+        {
+          "style": "标题 2",
+          "text": "2.1  脚本流程"
+        },
+        {
+          "style": "正文",
+          "text": "流程包括 inspect_source、clone、cover、fill-section 与 finish。"
+        }
+      ]
+    },
+    {
+      "heading": "结    论",
+      "style": "标题 1",
+      "i": 40,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "Phase 3 测试来稿结构完整，可用于验证套版脚本。"
+        }
+      ]
+    },
+    {
+      "heading": "参考文献",
+      "style": "标题 1",
+      "i": 42,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "[1] 中国石油大学（北京）克拉玛依校区. 本科毕业设计（论文）格式范本（2023年修订）."
+        }
+      ]
+    },
+    {
+      "heading": "致    谢",
+      "style": "标题 1",
+      "i": 44,
+      "blocks": [
+        {
+          "style": "正文",
+          "text": "感谢指导教师在测试方案设计中的帮助。"
+        },
+        {
+          "style": "正文",
+          "text": ""
+        }
+      ]
+    }
+  ]
+}

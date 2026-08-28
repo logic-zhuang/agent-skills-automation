@@ -1,0 +1,1634 @@
+# Stata CLI skill — 命令词典（唯一命令源；按需取词条，禁止整文件进提示词）。
+# 目录：python scripts/cli.py materials index
+# 词条：python scripts/cli.py materials search <query>
+# 权威：help <cmd> / 官方 PDF（Stata 19 [GSW]/[U]/[D]/[R]）。
+# 本 skill 只走命令窗口 + Results + 图形导出，不含 ui_map / roadmaps / 菜单演示。
+families:
+  session:
+    summary: CLI 会话工具与命令路径
+  io:
+    summary: 打开/保存/导入导出
+  inspect:
+    summary: 描述、列表、计数、质控
+  transform:
+    summary: 生成/替换/标签/类型转换
+  reshape:
+    summary: 排序、合并、长宽表、汇总
+  stats:
+    summary: 汇总、表、相关、检验
+  model:
+    summary: 回归、面板、多层、受限因变量与估计后
+  timeseries:
+    summary: 时序设定、滞后算子、时序回归
+  survival:
+    summary: 生存设定与 Cox / 描述
+  report:
+    summary: putexcel / putdocx / collect 交付导出
+  graph:
+    summary: 图形与导出
+  program:
+    summary: 宏、循环、返回值、前缀、程序
+  safety:
+    summary: 缺失、权重、破坏性、复现、错误码
+
+materials:
+  # ── session ──────────────────────────────────────────────
+  - id: stata_run
+    family: session
+    summary: 提交一条 Stata 命令（或绝对路径 do）
+    api: cli.py run
+    notes: >
+      交互每条一次 cli.py run；多步写 .do 后
+      python scripts/cli.py run 'do "C:/abs/analysis.do"'。禁止裸相对 do。
+    example: |
+      python scripts/cli.py run "sysuse auto, clear"
+      python scripts/cli.py run 'do "C:/abs/analysis.do"'
+    tags: [run, command, do]
+
+  - id: stata_connect
+    family: session
+    summary: 附着/启动 Stata；cwd → 会话工作区
+    api: cli.py connect
+    example: |
+      python scripts/cli.py connect --workspace C:/abs/session
+    tags: [connect, cwd]
+
+  - id: stata_read_results
+    family: session
+    summary: 重读 Results 窗文本
+    api: cli.py read-results
+    example: |
+      python scripts/cli.py read-results
+    tags: [results]
+
+  - id: stata_clear_panes
+    family: session
+    summary: 新任务开场清窗（Results/变量/属性/历史）
+    api: cli.py clear-panes / new-task
+    notes: >
+      clear all 清空变量与属性；cls 清空 Results；UIA 清空 History。
+      每个新用户任务开始时先 new-task 或 clear-panes，再跑分析命令。
+    example: |
+      python scripts/cli.py new-task --workspace C:/abs/session
+      python scripts/cli.py clear-panes
+    tags: [clear, cls, history, new-task]
+
+  - id: cmd.pwd_cd
+    family: session
+    summary: 工作目录（相对路径基准）
+    api: pwd / cd
+    notes: >
+      相对路径、相对 do、相对 import 均相对 pwd。
+      菜单 File>Open/Save 不受 cwd 约束（[GSW] 2）。Agent 优先绝对路径 + `/`。
+    example: |
+      pwd
+      cd "E:/data/project"
+    tags: [pwd, cd, path]
+
+  - id: cmd.do_run
+    family: session
+    summary: 执行 do-file（优先绝对路径）
+    api: do / run
+    notes: >
+      do 回显命令；run 不回显。相对名易 r(601)。
+      可用 do "file.do" arg1 arg2 向脚本传参（`1' `2'）。
+    example: |
+      do "C:/abs/path/analysis.do"
+      * run "C:/abs/path/analysis.do"
+    tags: [do, run, script]
+
+  - id: cmd.set_seed_more
+    family: session
+    summary: 脚本环境 set more / seed / version
+    api: set more off / set seed / version
+    notes: >
+      version # 锁定语法；set more off 防分页卡住自动化；
+      set seed 保证 sample/bootstrap 可复现。另见 set varabbrev off。
+    example: |
+      version 19
+      clear all
+      set more off
+      set seed 12345
+      set varabbrev off
+    tags: [set, seed, more, version]
+
+  - id: cmd.clear
+    family: session
+    summary: 清空内存数据/辅助对象
+    api: clear / clear all / discard
+    notes: >
+      clear 清数据与值标签等，保留部分结果；clear all 更彻底（程序、矩阵、帧等）。
+      discard 丢弃自动加载的 ado。drop all 只删变量。破坏性，勿误伤未保存数据。
+      [D] clear
+    example: |
+      clear
+      clear all
+      discard
+    tags: [clear, discard, memory]
+
+  - id: cmd.display
+    family: session
+    summary: 显示表达式/标量/宏（调试与报告）
+    api: display / di
+    notes: >
+      display as text|result|error；可用 %fmt。宏展开 `name' / $name。
+      与 return list / ereturn list 配合取 r()/e()。
+    example: |
+      display r(mean)
+      display as text "mean = " %9.3f r(mean)
+      display _N, _n, c(pwd)
+    tags: [display, di, debug]
+
+  - id: cmd.help_search
+    family: session
+    summary: 官方帮助与关键词搜索
+    api: help / search / hsearch
+    notes: >
+      help <cmd> 打开 Viewer；不确定命令名用 search keyword。
+      materials 无词条时先 help，勿臆造语法。权威仍以 PDF/help 为准。
+    example: |
+      help regress
+      help merge
+      search reshape
+      hsearch ttest
+    tags: [help, search, docs]
+
+  # ── io ───────────────────────────────────────────────────
+  - id: cmd.sysuse
+    family: io
+    summary: 加载随安装示例 .dta
+    api: sysuse
+    notes: >
+      clear 允许替换未保存内存数据；sysuse dir 列清单。
+      常用 auto、census、nlsw88、lifeexp。亦可用 use https://www.stata-press.com/data/r19/auto
+    example: |
+      sysuse dir
+      sysuse auto, clear
+    tags: [load, example, dta]
+
+  - id: cmd.use
+    family: io
+    summary: 打开 .dta / 网络示例
+    api: use / webuse
+    notes: >
+      Syntax: use [varlist] [if] [in] using filename [, clear nolabel]。
+      clear 不可缩写。webuse 拉 Stata Press 示例（需网络）。
+      子集：use make price using "C:/auto.dta", clear。[D] use
+    example: |
+      use "C:/path/data.dta", clear
+      use make price mpg using "C:/auto.dta", clear
+      webuse census5, clear
+    tags: [load, dta, webuse]
+
+  - id: cmd.save
+    family: io
+    summary: 保存 .dta（replace 不可缩写）
+    api: save / saveold
+    notes: >
+      replace 覆盖磁盘比 clear 更危险（[U] 11.2）。
+      saveold …, version(#) 给旧版 Stata。空数据也可 save。
+    example: |
+      save "C:/path/out.dta"
+      save "C:/path/out.dta", replace
+      saveold "C:/path/out.dta", replace version(14)
+    tags: [save, dta, replace]
+
+  - id: cmd.import_excel
+    family: io
+    summary: 导入 Excel（.xls/.xlsx）
+    api: import excel
+    notes: >
+      Syntax: import excel [using] filename [, sheet() cellrange() firstrow
+      case(preserve|lower|upper) allstring clear]。
+      先 import excel "f.xlsx", describe 看工作表与范围。
+      firstrow 把首行当变量名（原名进变量标签）。xlsx 有约 40MB 性能限制。
+      混合类型列可能整列变 string。日期见 [D] Datetime。[D] import excel
+    example: |
+      import excel "C:/data.xlsx", describe
+      import excel using "C:/data.xlsx", firstrow clear
+      import excel "C:/data.xlsx", sheet("Sheet1") cellrange(A1:G200) firstrow case(lower) clear
+    tags: [import, excel, xlsx]
+
+  - id: cmd.import_delimited
+    family: io
+    summary: 导入 CSV/TSV（现代首选分隔文本）
+    api: import delimited
+    notes: >
+      Syntax: import delimited [using] filename [, delimiters() varnames(#|nonames)
+      rowrange() colrange() encoding() bindquotes() clear]。
+      默认逗号；TSV 用 delimiters("\t")。旧命令 insheet 仍可用但优先本命令。[D] import delimited
+    example: |
+      import delimited using "C:/data.csv", clear
+      import delimited "C:/t.tsv", delimiters("\t") varnames(1) clear
+      import delimited "C:/data.csv", rowrange(2:1000) encoding("utf-8") clear
+    tags: [import, csv, tsv]
+
+  - id: cmd.infix_infile
+    family: io
+    summary: 定宽/自由格式/字典导入
+    api: infix / infile
+    notes: >
+      定宽用 infix；自由格式 infile；字典 infile using dict.dct。
+      现代 CSV/Excel 优先 import delimited / import excel。
+    example: |
+      infix id 1-4 str20 name 5-24 age 25-26 using "C:/raw.txt", clear
+      infile id str20 name age using "C:/raw.raw", clear
+      infile using mydict.dct, clear
+    tags: [import, infix, infile, dct]
+
+  - id: cmd.export_excel
+    family: io
+    summary: 导出 Excel
+    api: export excel
+    notes: >
+      Syntax: export excel [varlist] using filename [if] [in]
+      [, sheet("name"[, modify|replace]) firstrow(variables|varlabels)
+      cell() nolabel replace]。
+      无扩展名默认 .xlsx。结果表进 Excel 亦可用 putexcel / collect export。
+    example: |
+      export excel using "C:/out.xlsx", firstrow(variables) replace
+      export excel make price mpg using "C:/cars.xlsx", sheet("Sheet1", replace) replace
+    tags: [export, excel]
+
+  - id: cmd.export_delimited
+    family: io
+    summary: 导出 CSV/TSV
+    api: export delimited
+    notes: >
+      Syntax: export delimited [varlist] using filename [if] [in]
+      [, delimiter(comma|tab|char) novarnames quote replace]。
+    example: |
+      export delimited using "C:/out.csv", replace
+      export delimited price mpg using "C:/subset.csv", delimiter(tab) replace
+    tags: [export, csv]
+
+  # ── inspect ──────────────────────────────────────────────
+  - id: cmd.describe
+    family: inspect
+    summary: 变量类型/标签/格式一览
+    api: describe
+    notes: >
+      Syntax: describe [varlist] [, simple short fullnames]。
+      simple 只列名；默认含 storage type、display format、value label、变量标签。
+      describe using filename 不载入即可窥视磁盘 .dta。[D] describe
+    example: |
+      describe
+      describe make price mpg, simple
+      describe using "C:/path/data.dta"
+    tags: [describe, codebook]
+
+  - id: cmd.codebook_notes
+    family: inspect
+    summary: 变量详解与数据集 notes
+    api: codebook / notes / inspect
+    notes: >
+      codebook 给分布/缺失/唯一值概览；inspect 给直方图式文本摘要。
+      notes / notes varname 读写注释。[D] codebook [D] notes [D] inspect
+    example: |
+      codebook foreign
+      codebook, compact
+      inspect rep78
+      notes
+      notes price: "CPI adjusted"
+    tags: [codebook, notes, inspect]
+
+  - id: cmd.list
+    family: inspect
+    summary: 列出观测（可 if/in）
+    api: list / browse
+    notes: >
+      list 出 Results；browse/edit 开 Data Editor（自动化慎用 edit）。
+      选项 clean noobs abbreviate(#)。大量观测先 in 1/20 或 if。
+    example: |
+      list make price in 1/10
+      list make if missing(rep78)
+      list make price, clean
+    tags: [list, browse]
+
+  - id: cmd.count
+    family: inspect
+    summary: 计数；不改数据
+    api: count
+    notes: count → r(N)。常与 if 合用做质控。
+    example: |
+      count
+      count if foreign==1
+      display r(N)
+    tags: [count]
+
+  - id: cmd.assert
+    family: inspect
+    summary: 断言；失败报错（do-file 质控）
+    api: assert / confirm
+    notes: >
+      assert 失败 → r(9)。confirm variable|numeric|string|file|matrix …
+      用于脚本前置检查。[P] assert [P] confirm
+    example: |
+      assert price > 0
+      assert !missing(make)
+      confirm variable mpg weight
+      confirm file "C:/data.dta"
+    tags: [assert, confirm, qc]
+
+  - id: cmd.isid_duplicates
+    family: inspect
+    summary: 唯一键断言与查重
+    api: isid / duplicates
+    notes: >
+      isid varlist 断言唯一标识（失败报错）。
+      duplicates report|list|tag|drop。drop 需 force，破坏性。
+    example: |
+      isid id
+      duplicates report id
+      duplicates list id
+      duplicates tag id, generate(dup)
+      duplicates drop id, force
+    tags: [isid, duplicates, unique]
+
+  # ── transform ────────────────────────────────────────────
+  - id: cmd.generate
+    family: transform
+    summary: 创建新变量 =exp
+    api: generate
+    notes: >
+      Syntax: generate [type] newvar[=lbl] = exp [if] [in] [, before()|after()]。
+      type: byte|int|long|float|double|strL|str#；默认数值多为 float。
+      已存在 → r(110) 改用 replace 或先 drop。带 if/in 时其余观测为缺失。
+      产生缺失会提示 (k missing values generated)。系统变量 _n _N _diff。
+      运行和用 sum()；组内总和用 egen total()。[D] generate
+    example: |
+      generate gp100m = 100/mpg
+      generate byte first = _n==1
+      bysort foreign: generate n_g = _N
+      generate runsum = sum(price)
+    tags: [generate, gen, create]
+
+  - id: cmd.replace
+    family: transform
+    summary: 改已有变量（不可缩写）
+    api: replace
+    notes: >
+      Syntax: replace oldvar = exp [if] [in] [, nopromote]。
+      replace 必须全拼。改类型受限；需升类型可 recast 或 gen 新变量。
+      报告 (# real changes made)。破坏性。[D] replace
+    example: |
+      replace pred = 1.10*price if foreign==1
+      replace odd = 5 in 3
+      replace price = . if price < 0
+    tags: [replace, destructive]
+
+  - id: cmd.egen
+    family: transform
+    summary: 扩展生成（组内/行函数）
+    api: egen
+    notes: >
+      Syntax: egen [type] newvar = fcn(args) [if] [in] [, options]。
+      组内（多允许 by:）：mean total median min max sd count rank pctile
+      tag group。行函数（不可 by）：rowmean rowtotal rowmiss rownonmiss
+      rowmin rowmax rowmedian。group(varlist) 造组号；concat 拼串。
+      注意：egen total()=总体/组内和；generate sum()=运行和。
+      rank 默认平均秩；field|track|unique 改并列处理。[D] egen
+    example: |
+      egen mean_mpg = mean(mpg), by(foreign)
+      bysort foreign: egen med_p = median(price)
+      egen nmiss = rowmiss(price mpg rep78)
+      egen id = group(make)
+      egen idlab = group(foreign), label
+      egen rank_price = rank(price)
+      egen tot = total(price), by(foreign)
+    tags: [egen, mean, rank, group, row]
+
+  - id: cmd.clonevar
+    family: transform
+    summary: 克隆变量（含标签/格式）
+    api: clonevar
+    notes: clonevar newvar = varname。比 gen new=old 更完整保留属性。[D] clonevar
+    example: |
+      clonevar price2 = price
+    tags: [clonevar, copy]
+
+  - id: cmd.drop_keep
+    family: transform
+    summary: 删/留变量或观测（破坏性全拼）
+    api: drop / keep
+    notes: >
+      drop 不能裸写；删全部变量用 drop _all 或 clear。
+      drop varlist | drop if exp | drop in range。keep 同理（保留）。
+      观测向破坏前先 count/preserve。[D] drop
+    example: |
+      drop varname
+      keep varlist
+      drop if missing(price)
+      keep if foreign==1
+      keep in 1/100
+    tags: [drop, keep, destructive]
+
+  - id: cmd.rename
+    family: transform
+    summary: 变量改名
+    api: rename
+    notes: >
+      rename old new；批量 rename (a b) (x y)；
+      rename stub* 支持通配规则（见 help rename group）。
+    example: |
+      rename price cost
+      rename (mpg weight) (mileage wt)
+    tags: [rename]
+
+  - id: cmd.recode
+    family: transform
+    summary: 重编码（可 generate 保留原变量）
+    api: recode
+    notes: >
+      Syntax: recode varlist (rule)… [if] [in] [, generate() prefix() label() copyrest]。
+      规则如 (1/2=1) (else=9) (missing=.). 优先 generate() 保留原变量。
+    example: |
+      recode rep78 (1/2=1 "差") (3=2 "中") (4/5=3 "好"), generate(rep3)
+      recode price (min/5000=1) (5001/10000=2) (10001/max=3), gen(pcat)
+    tags: [recode]
+
+  - id: cmd.encode_decode
+    family: transform
+    summary: 字符串↔数值+值标签
+    api: encode / decode
+    notes: >
+      encode 须 generate()；默认按字母序赋码（非出现顺序）。
+      已有标签用 label define + encode …, label(lbl)。decode 数值→标签字符串。
+    example: |
+      encode make, generate(make_n)
+      decode foreign, generate(foreign_s)
+    tags: [encode, decode, label]
+
+  - id: cmd.destring_tostring
+    family: transform
+    summary: 字符串数字 ↔ 数值
+    api: destring / tostring
+    notes: >
+      destring varlist, generate()|replace [ignore("chars") force percent]。
+      含非数字时 force 变缺失。tostring 有 format() generate() replace。
+    example: |
+      destring id_str, generate(id) ignore(",")
+      destring price_s, replace ignore("$ ,")
+      tostring year, generate(year_s) format(%04.0f)
+    tags: [destring, tostring]
+
+  - id: cmd.label
+    family: transform
+    summary: 变量标签 / 值标签 / 数据标签
+    api: label var / define / values / data / dir / list / drop
+    notes: >
+      label variable varname "text"；label define lbl # "text" … [, add modify replace]；
+      label values varname lbl；label data "dataset title"。
+      label list / label dir 查看；修改已用标签常需 modify/replace。
+    example: |
+      label data "1978 auto sample"
+      label var gp100m "Gallons per 100 miles"
+      label define origin 0 "Domestic" 1 "Foreign"
+      label values foreign origin
+      label list origin
+    tags: [label, value-label]
+
+  - id: cmd.order
+    family: transform
+    summary: 调整变量显示顺序
+    api: order
+    notes: order varlist [, first last before() after() alpha]。
+    example: |
+      order make price mpg, first
+      order weight, after(mpg)
+    tags: [order]
+
+  - id: cmd.format_compress
+    family: transform
+    summary: 显示格式与存储压缩
+    api: format / compress / recast
+    notes: >
+      format varlist %fmt（如 %9.2f %td %tc %20s）。
+      compress 自动缩小存储类型省内存；recast type varlist 强制改类型（可能丢精度）。
+    example: |
+      format price %9.0fc
+      format date %td
+      compress
+      recast double gdp
+    tags: [format, compress, recast]
+
+  - id: cmd.string_fns
+    family: transform
+    summary: 常用字符串函数
+    api: substr / strlen / strpos / subinstr / strupper / ustr*
+    notes: >
+      在 generate/replace 中用。substr(s,b,l)；strpos(s,"x")；
+      subinstr(s,"old","new",.)；字面用 `"`"` 小心引号。
+      Unicode 优先 ustr*（Stata 14+）。[FN] String functions
+    example: |
+      generate tld = substr(email, strpos(email,"@")+1, .)
+      replace name = strtrim(name)
+      generate flag = strpos(lower(make), "ford") > 0
+    tags: [string, substr, strpos]
+
+  - id: cmd.datetime
+    family: transform
+    summary: 日期时间生成与显示
+    api: date / mdy / clock / format %td %tc
+    notes: >
+      日期在 Stata 是距 1960-01-01 的天数。date("2020-01-15","YMD")；
+      mdy(1,15,2020)。显示：format datevar %td。时钟 %tc/%tC。
+      Excel 导入日期异常时查 [D] Datetime。[D] Datetime
+    example: |
+      generate edate = date(date_str, "YMD")
+      generate edate2 = mdy(month, day, year)
+      format edate %td
+      generate ym = ym(year, month)
+      format ym %tm
+    tags: [date, time, datetime, td-format]
+
+  - id: cmd.factor_vars
+    family: transform
+    summary: 因子变量与交互（i. c. # ##）
+    api: i. / c. / # / ##
+    notes: >
+      i.cat 虚拟变量；c.x 连续；x#z 交互；x##z = 主效应+交互。
+      ib#.cat 设基组；i.a#i.b 两因子交互。多用于 regress/logit/margins。
+      [U] 11.4.3 Factor variables
+    example: |
+      regress price mpg i.foreign
+      regress price c.mpg##i.foreign
+      regress price ibn.rep78, noconstant
+      margins foreign, at(mpg=(10(10)40))
+    tags: [factor, i-prefix, interaction, double-hash]
+
+  # ── reshape ──────────────────────────────────────────────
+  - id: cmd.sort_gsort
+    family: reshape
+    summary: 升序 / 混合升降序
+    api: sort / gsort
+    notes: >
+      sort varlist；gsort -price foreign（- 降序）。
+      by: 前常需先 sort，或 by varlist, sort: / bysort。
+    example: |
+      sort foreign mpg
+      gsort -price foreign
+    tags: [sort, gsort]
+
+  - id: cmd.append
+    family: reshape
+    summary: 纵向追加观测
+    api: append
+    notes: >
+      append using filename [, keep() generate() force]。
+      同名变量对齐；using 多出的变量会加入。force 允许类型冲突（慎用）。
+      横向合并用 merge；笛卡尔用 cross。[D] append
+    example: |
+      append using "C:/more.dta"
+      append using "C:/more.dta", generate(source)
+    tags: [append]
+
+  - id: cmd.merge
+    family: reshape
+    summary: 按键横向合并（生成 _merge）
+    api: merge
+    notes: >
+      Syntax: merge {1:1|m:1|1:m|m:m} varlist using filename [, options]。
+      选项 keepusing() generate()/_merge nogenerate update replace
+      assert() keep() force sorted。码 1=master 2=using 3=match（update 时还有 4/5）。
+      m:m 极少正确；合并后必 tabulate _merge。键不能 strL。加观测用 append。
+      多表链接可 frlink。见 const.merge_codes。[D] merge
+    example: |
+      merge 1:1 id using "C:/attrs.dta"
+      merge 1:1 id using "C:/attrs.dta", keepusing(v3) keep(match)
+      merge m:1 firm_id using "C:/firms.dta"
+      merge 1:m id using "C:/spells.dta"
+      tabulate _merge
+      keep if _merge==3
+      drop _merge
+    tags: [merge, _merge, join]
+
+  - id: cmd.joinby
+    family: reshape
+    summary: 按键形成组内笛卡尔积后合并
+    api: joinby
+    notes: >
+      当匹配键不唯一、需要组内两两组合时用 joinby（异于 merge 1:1/m:1）。
+      多数情形 merge 更合适。见 [U] 23 Combining datasets。[D] joinby
+    example: |
+      joinby family_id using "C:/siblings.dta"
+    tags: [joinby, combine]
+
+  - id: cmd.reshape
+    family: reshape
+    summary: 宽表 ↔ 长表
+    api: reshape
+    notes: >
+      Syntax: reshape {long|wide} stubnames, i(varlist) [j(varname) string …]。
+      i() 必填。stub 可用 @ 标 j 嵌入位置。未列入变量视为在 i 内恒定。
+      单独 reshape long/wide 可撤销最近一次相反操作。失败用 reshape error。[D] reshape
+    example: |
+      reshape long income, i(id) j(year)
+      reshape wide income, i(id) j(year)
+      reshape long y, i(id) j(year) string
+      reshape error
+    tags: [reshape, long, wide]
+
+  - id: cmd.collapse
+    family: reshape
+    summary: 汇总成新数据集（替换内存）
+    api: collapse
+    notes: >
+      Syntax: collapse (stat) varlist … [iw|fw|pw|aw], by(varlist)。
+      stat: mean sum median count min max sd … 破坏性；前先 preserve/save。
+    example: |
+      preserve
+      collapse (mean) mpg price (count) n=mpg, by(foreign)
+      restore
+    tags: [collapse, aggregate]
+
+  - id: cmd.contract_expand
+    family: reshape
+    summary: 频数压缩 / 按频数展开
+    api: contract / expand
+    notes: >
+      contract varlist [, freq() zero] 变成唯一组合+频数（破坏性）。
+      expand #|varname 复制观测。expand 后常需重新生成 id。
+    example: |
+      contract foreign rep78, freq(n)
+      expand n
+      expand 2 if foreign==1
+    tags: [contract, expand, frequency]
+
+  - id: cmd.fillin
+    family: reshape
+    summary: 补全面板/交叉分类缺行
+    api: fillin
+    notes: >
+      fillin id year 为每个 id×year 补缺失组合（新行变量为缺失）。
+      常接 xtset。事后可用 _fillin 标识补上的行。[D] fillin
+    example: |
+      fillin id year
+      list if _fillin
+    tags: [fillin, panel, balanced]
+
+  - id: cmd.sample
+    family: reshape
+    summary: 随机子样本（改观测集）
+    api: sample
+    notes: 先 set seed；破坏性。sample # 百分比；sample #, count 固定条数。
+    example: |
+      set seed 12345
+      sample 10
+      sample 50, count
+    tags: [sample, random]
+
+  - id: cmd.preserve_restore
+    family: reshape
+    summary: 临时改数据后还原
+    api: preserve / restore
+    notes: 不可嵌套多层 preserve（旧版）；restore, not 取消还原。
+    example: |
+      preserve
+          keep if foreign==1
+          summarize price
+      restore
+    tags: [preserve, restore]
+
+  - id: cmd.frames
+    family: reshape
+    summary: 多数据集并存与链接
+    api: frame / frlink / frget
+    notes: >
+      frame create|change|copy|drop|put|post。frlink 后 frget 拉变量。
+      Stata 16+ 替代频繁 save/use 切换。[D] frames
+    example: |
+      frame create firms
+      frame firms: use "C:/firms.dta", clear
+      frame change default
+      frlink m:1 firm_id, frame(firms)
+      frget firm_size, from(firms)
+    tags: [frame, frlink, multi]
+
+  # ── stats ────────────────────────────────────────────────
+  - id: cmd.summarize
+    family: stats
+    summary: 单变量汇总（Obs/Mean/SD/Min/Max）
+    api: summarize
+    notes: >
+      Syntax: summarize [varlist] [if] [in] [weight] [, options]。
+      选项 detail=分位数/偏度/峰度；meanonly=只算均值不显示（不可与 detail）；
+      format；separator(#) 默认 5。权重 aweight/fweight/iweight（iweight 不可配 detail）。
+      前缀 by/collect/rolling/statsby。Stored: r(N) r(mean) r(sd) r(min) r(max) r(sum)…
+      → return list。字符串 Obs 常为 0；某变量 Obs 少 ⇒ 有缺失。[R] summarize
+    example: |
+      summarize price mpg
+      summarize price, detail
+      by foreign, sort: summarize mpg
+      summarize mpg [fweight=w]
+    tags: [summarize, su, descriptive]
+
+  - id: cmd.tabulate
+    family: stats
+    summary: 一维/二维频数表与关联检验
+    api: tabulate / tab1 / tab2
+    notes: >
+      一维: tabulate varname [if] [in] [weight] [, missing sort generate() nolabel]。
+      二维: tabulate r c [, row column cell chi2 exact lrchi2 V gamma expected missing]。
+      tabulate …, summarize(varname) 分组均值（更快旧式；灵活表优先 table）。
+      chi2=Pearson；exact=Fisher；row/column=行/列百分比。
+      权重：一维/二维可用 fweight/aweight/iweight（部分关联度量禁 aw/iw）。
+      大表用 table。[R] tabulate oneway/twoway
+    example: |
+      tabulate foreign
+      tabulate foreign, missing sort
+      tabulate rep78 foreign, row column
+      tabulate rep78 foreign, chi2 exact
+      tabulate foreign, summarize(mpg)
+      tab1 rep78 foreign
+    tags: [tabulate, tab, frequency, chi2]
+
+  - id: cmd.table_collect
+    family: stats
+    summary: 现代多维表与收集导出
+    api: table / collect / tabstat
+    notes: >
+      table 比 tabulate, summarize() 更灵活（多维、多统计量）。
+      tabstat varlist, by() stats(mean sd n …)。
+      collect: 估计/表 → collect export "out.xlsx"|pdf|docx。
+      [R] table [TABLES] collect
+    example: |
+      table foreign, statistic(mean mpg price) statistic(sd mpg)
+      tabstat mpg price, by(foreign) stat(mean sd n)
+      collect export "C:/out/table.xlsx", replace
+    tags: [table, collect, tabstat]
+
+  - id: cmd.correlate
+    family: stats
+    summary: 相关与协方差
+    api: correlate / pwcorr / spearman
+    notes: >
+      correlate 用列表wise（任缺则剔除该观测全部相关）；
+      pwcorr 成对相关，可 sig star(0.05) obs。spearman 秩相关。
+      covariance 选项出协方差。[R] correlate [R] spearman
+    example: |
+      correlate price mpg weight
+      pwcorr price mpg weight, sig star(0.05) obs
+      spearman price mpg, stats(rho p)
+    tags: [correlate, pwcorr, spearman, correlation]
+
+  - id: cmd.ttest
+    family: stats
+    summary: t 检验（单样本/配对/两样本）
+    api: ttest
+    notes: >
+      单样本: ttest varname == # [, level(#)]。
+      两样本(组): ttest varname, by(groupvar) [unequal welch reverse level(#)]。
+      注意 by() 是选项，不是 by: 前缀（可同时用 by cat: ttest …）。
+      配对: ttest v1 == v2；两变量非配对加 unpaired [unequal]。
+      默认 level(95)。Stored r(mu_1) r(mu_2) r(t) r(p) r(p_l) r(p_u)…[R] ttest
+    example: |
+      ttest mpg == 20
+      ttest mpg, by(foreign)
+      ttest mpg, by(foreign) unequal
+      ttest before == after
+      ttest v1 == v2, unpaired unequal
+    tags: [ttest, mean]
+
+  - id: cmd.ranksum
+    family: stats
+    summary: 非参数两样本/配对秩检验
+    api: ranksum / signrank / median
+    notes: >
+      ranksum varname, by(group) [porder] = Wilcoxon/Mann–Whitney。
+      signrank v1 = v2 配对；median 中位数检验。正态假设不稳时用。
+    example: |
+      ranksum mpg, by(foreign)
+      signrank before = after
+    tags: [ranksum, wilcoxon, nonparametric]
+
+  - id: cmd.anova
+    family: stats
+    summary: 方差分析
+    api: anova / oneway
+    notes: >
+      anova depvar factors [, repeated() partial]。因子可用 i.a##i.b。
+      简单单因素亦可用 oneway varname groupvar, tabulate。
+    example: |
+      anova mpg foreign
+      anova y i.a##i.b
+      oneway mpg foreign, tabulate
+    tags: [anova, oneway]
+
+  - id: cmd.ci_means
+    family: stats
+    summary: 均值/比例置信区间
+    api: ci means / ci proportions / mean
+    notes: >
+      ci means varlist [, level() normal poisson exact]。
+      mean varname, over() 估计均值并可 vce(cluster)。proportion 估比例。
+    example: |
+      ci means price
+      ci proportions foreign
+      mean mpg, over(foreign)
+    tags: [ci, mean, confidence]
+
+  # ── model ────────────────────────────────────────────────
+  - id: cmd.regress
+    family: model
+    summary: OLS 线性回归
+    api: regress
+    notes: >
+      Syntax: regress depvar [indepvars] [if] [in] [weight] [, options]。
+      因子 i.cat；交互 c.x##i.a。选项 noconstant vce(ols|robust|cluster …)
+      vce(bootstrap|jackknife) beta level(#)。结果 e(N) e(r2) e(r2_a) e(F) e(b) e(V)
+      → ereturn list；下次估计覆盖 → estimates store。post: predict / margins / test。
+      权重：aweight/fweight/iweight/pweight（pweight≈robust）。[R] regress
+    example: |
+      regress price mpg weight
+      regress price mpg i.foreign
+      regress price c.mpg##i.foreign, vce(robust)
+      regress price mpg weight, vce(cluster make)
+    tags: [regress, ols, vce]
+
+  - id: cmd.logit
+    family: model
+    summary: Logistic 回归（0/1）
+    api: logit / logistic
+    notes: >
+      logit 报系数（log-odds）；logistic 默认报优势比 OR（or 可关）。
+      Syntax 同：depvar indepvars [, vce(robust|cluster) or noconstant]。
+      预测默认 pr（概率）；xb 线性预测。分类表estat classification。[R] logit
+    example: |
+      logit foreign mpg weight
+      logistic foreign mpg weight
+      logit foreign mpg weight, vce(robust)
+      predict phat
+      predict xbhat, xb
+    tags: [logit, logistic, binary, or]
+
+  - id: cmd.probit
+    family: model
+    summary: Probit / 有序 / 多类
+    api: probit / oprobit / ologit / mlogit
+    notes: >
+      probit 二元；oprobit/ologit 有序；mlogit 多类（基组 base()）。
+      边际效应用 margins, dydx(*)。平行线假设见 omodel/Brant（社区）。
+    example: |
+      probit foreign mpg weight
+      ologit rep78 mpg weight
+      mlogit rep78 mpg weight, base(3)
+    tags: [probit, ologit, mlogit, ordered]
+
+  - id: cmd.poisson
+    family: model
+    summary: 泊松/负二项（计数）
+    api: poisson / nbreg / zip
+    notes: >
+      poisson depvar indepvars [, vce() exposure() offset() irr]。
+      过离散用 nbreg；零膨胀 zip/zinb。irr 报发生率比。
+    example: |
+      poisson count x1 x2, vce(robust)
+      nbreg count x1 x2
+      poisson count x1, exposure(pop) irr
+    tags: [poisson, nbreg, count]
+
+  - id: cmd.xtreg
+    family: model
+    summary: 面板回归入门
+    api: xtset / xtreg / xtdescribe / xtsum
+    notes: >
+      先 xtset panelvar [timevar] [, monthly|delta()]。亦可用 tsset panel time。
+      xtreg y x1 x2, fe|re|be [vce(cluster panelvar) mle]。
+      fe=固定效应；re=随机效应；be=组间。hausman 助选 fe/re。
+      xtdescribe / xtsum 看面板结构与组内组间变异。强平衡：tsfill / fillin。
+      动态面板见 xtabond（进阶）。[XT] xtreg
+    example: |
+      xtset id year
+      xtdescribe
+      xtsum y x1
+      xtreg y x1 x2, fe
+      xtreg y x1 x2, re vce(cluster id)
+      estimates store fe
+      quietly xtreg y x1 x2, re
+      estimates store re
+      hausman fe re
+    tags: [xtreg, panel, fe, re, xtset]
+
+  - id: cmd.areg
+    family: model
+    summary: 吸收高维类别固定效应（单维）
+    api: areg
+    notes: >
+      areg y x1 x2, absorb(id) [vce(cluster id)] 吸收 absorb() 维固定效应。
+      多维 FE 常用社区 reghdfe（需 ssc install）。[R] areg
+    example: |
+      areg wage educ age, absorb(firm_id) vce(cluster firm_id)
+    tags: [areg, absorb, fixed-effects]
+
+  - id: cmd.mixed
+    family: model
+    summary: 多层/混合线性模型
+    api: mixed / meglm
+    notes: >
+      mixed y x || group: [, mle reml covariance()]。
+      随机斜率: || id: time。非线性/GLM 族用 meglm / melogit。
+      [ME] mixed
+    example: |
+      mixed math x1 x2 || school: || class:
+      mixed y time || id: time, covariance(unstructured)
+    tags: [mixed, multilevel, random-effects]
+
+  - id: cmd.glm
+    family: model
+    summary: 广义线性模型
+    api: glm
+    notes: >
+      glm y x, family(gaussian|binomial|poisson|…) link(identity|logit|log|…)。
+      vce(robust|cluster)。很多专用命令是 glm 特例。[R] glm
+    example: |
+      glm y x1 x2, family(binomial) link(logit)
+      glm count x1, family(poisson) link(log) vce(robust)
+    tags: [glm, family, link]
+
+  - id: cmd.tobit_heckman
+    family: model
+    summary: 受限因变量（Tobit / 样本选择）
+    api: tobit / intreg / heckman / heckprobit
+    notes: >
+      tobit y x, ll(#)|ul(#)。区间删失 intreg。
+      heckman y x, select(z=…) 两步/MLE 样本选择。先理解删失机制再建模。
+    example: |
+      tobit hours educ age, ll(0)
+      heckman wage educ, select(employed = educ age kids)
+    tags: [tobit, heckman, selection, censored]
+
+  - id: cmd.lincom_nlcom
+    family: model
+    summary: 估计后线性/非线性组合
+    api: lincom / nlcom / testnl
+    notes: >
+      lincom _b[mpg]+_b[weight]；nlcom 非线性。比手工算 SE 更稳。
+      因子水平对比也可用 contrast / pwcompare。
+    example: |
+      lincom mpg + weight
+      nlcom _b[mpg] / _b[weight]
+      pwcompare i.foreign, effects
+    tags: [lincom, nlcom, contrast]
+
+  - id: cmd.ivregress
+    family: model
+    summary: 工具变量回归
+    api: ivregress / ivreg2
+    notes: >
+      ivregress 2sls|gmm|liml y exog (endog = instruments) [, vce() first]。
+      先看 first 一阶段。社区 ivreg2 诊断更全（需 ssc）。[R] ivregress
+    example: |
+      ivregress 2sls y x1 (x_endog = z1 z2), vce(robust)
+      ivregress 2sls y x1 (x_endog = z1 z2), first
+    tags: [iv, 2sls, instrument]
+
+  - id: cmd.predict
+    family: model
+    summary: 估计后预测/残差
+    api: predict
+    notes: >
+      Syntax: predict [type] newvar [if] [in] [, statistic]。
+      回归常用：默认 xb；residuals；rstudent；leverage cooksd。
+      logit/probit 默认 pr；可 xb stdp。仅样本内加 if e(sample)。
+      不同估计命令 statistic 不同 → help <cmd> postestimation。[R] predict
+    example: |
+      predict yhat
+      predict resid, residuals
+      predict xb, xb
+      predict phat if e(sample)
+      predict lev, leverage
+    tags: [predict, postestimation, residuals]
+
+  - id: cmd.estimates
+    family: model
+    summary: 存储/恢复/比较估计结果
+    api: estimates store / restore / table / stats / dir
+    notes: 下一次估计覆盖 e() → 立刻 store。estimates save/use 可落盘。
+    example: |
+      estimates store m1
+      estimates restore m1
+      estimates table m1 m2, star stats(N r2)
+      estimates stats m1 m2
+    tags: [estimates, store, e]
+
+  - id: cmd.test_margins
+    family: model
+    summary: 假设检验与边际效应
+    api: test / testparm / margins / marginsplot
+    notes: >
+      test expr；testparm i.cat。margins 算预测边际/ AME；
+      marginsplot 出图。dydx(*) 平均边际效应。分类结局注意 pr 尺度。
+    example: |
+      test mpg = weight
+      testparm i.foreign
+      margins, dydx(*)
+      margins foreign
+      marginsplot
+    tags: [test, margins, marginsplot, postestimation]
+
+  - id: cmd.estat
+    family: model
+    summary: 估计后诊断与附加统计
+    api: estat
+    notes: >
+      依最近估计命令变化：estat V / summarize / ic（AIC/BIC）/
+      hettest（回归异方差）/ ovtest / classification（logit）。
+      先 help <cmd> postestimation。
+    example: |
+      estat ic
+      estat hettest
+      estat classification
+    tags: [estat, diagnostics, postestimation]
+
+  # ── graph ────────────────────────────────────────────────
+  - id: cmd.scatter
+    family: graph
+    summary: 散点图
+    api: scatter / twoway scatter
+    notes: msymbol() mcolor() mlabel() 控制点；|| 叠加等价于 twoway ( ) ( )。
+    example: |
+      scatter mpg weight
+      twoway (scatter mpg weight), by(foreign, total)
+    tags: [scatter, graph]
+
+  - id: cmd.histogram
+    family: graph
+    summary: 直方图 / 核密度
+    api: histogram / kdensity
+    notes: >
+      histogram varname [, frequency percent normal bin() width() by()]。
+      kdensity varname [, normal]。
+    example: |
+      histogram mpg, frequency normal
+      histogram mpg, by(foreign)
+      kdensity mpg, normal
+    tags: [histogram, kdensity, graph]
+
+  - id: cmd.graph_box
+    family: graph
+    summary: 箱线图
+    api: graph box / graph hbox
+    example: |
+      graph box mpg, over(foreign)
+      graph box price mpg
+      graph hbox mpg, over(foreign)
+    tags: [box, graph]
+
+  - id: cmd.graph_bar
+    family: graph
+    summary: 条形图
+    api: graph bar / graph hbar
+    notes: >
+      graph bar (mean) y, over(cat)；可 (sum) (count) 等。
+      asyvars stack percent 等改外观。
+    example: |
+      graph bar (mean) mpg, over(foreign)
+      graph hbar (mean) price, over(rep78)
+    tags: [bar, graph]
+
+  - id: cmd.twoway
+    family: graph
+    summary: 多层叠加图（scatter/lfit/line…）
+    api: twoway
+    notes: >
+      常用: scatter lfit lfitci lowess line connected area rcap。
+      do-file 续行用行末 ///。总标题 title() xtitle() legend()。
+    example: |
+      twoway (scatter mpg weight) (lfit mpg weight)
+      twoway (scatter price mpg if foreign==0) ///
+             (scatter price mpg if foreign==1), ///
+             legend(label(1 "Domestic") label(2 "Foreign"))
+      twoway (lowess mpg weight)
+    tags: [twoway, lfit, overlay, lowess]
+
+  - id: cmd.graph_export
+    family: graph
+    summary: 导出当前图（交付用绝对路径）
+    api: graph export / graph save
+    notes: >
+      graph export "file.png|.pdf|.tif|.eps", replace [as() width() height()]。
+      graph save "file.gph", replace 存可编辑图。优先绝对路径到 deliverables/。
+    example: |
+      graph export "C:/out/fig.png", replace
+      graph export "C:/out/fig.pdf", as(pdf) replace
+      graph save "C:/out/fig.gph", replace
+    tags: [export, png, pdf, deliverable]
+
+  # ── program ──────────────────────────────────────────────
+  - id: cmd.by_prefix
+    family: program
+    summary: "by: 分组重复命令"
+    api: by / bysort
+    notes: >
+      须已 sort，或 by varlist, sort: / bysort varlist:。
+      不可与 in 同用。组内 _n/_N 重算。by 与 ttest 的 by() 选项不同。
+    example: |
+      by foreign, sort: summarize mpg
+      bysort foreign: generate n = _N
+    tags: [by, bysort, prefix]
+
+  - id: cmd.quietly_capture
+    family: program
+    summary: 抑制输出 / 捕获错误码
+    api: quietly / noisily / capture
+    notes: >
+      此三前缀可省略冒号（历史遗留）。capture 后查 _rc（0=成功）。
+      capture noisily 既捕获又显示。
+    example: |
+      quietly summarize price
+      capture drop temp
+      display _rc
+      capture noisily merge 1:1 id using "C:/x.dta"
+    tags: [quietly, capture, prefix]
+
+  - id: cmd.statsby_svy
+    family: program
+    summary: 分组收集统计 / bootstrap 前缀
+    api: statsby / bootstrap / jackknife / rolling
+    notes: >
+      statsby exp_list, by(): cmd。bootstrap, reps(#) seed(#): cmd。
+      jackknife: cmd。rolling window: rolling …: cmd（需时序）。
+    example: |
+      statsby mean=r(mean) sd=r(sd), by(foreign): summarize mpg
+      bootstrap r(mean), reps(200) seed(1): summarize price
+      jackknife r(mean): summarize price
+    tags: [statsby, bootstrap, jackknife, prefix]
+
+  - id: cmd.svyset
+    family: program
+    summary: "复杂抽样设计后 svy: 估计"
+    api: svyset / svy
+    notes: >
+      svyset [psu] [weight], strata() fpc() … 后再 svy: regress|mean|tabulate…
+      权重多为 pweight。未 svyset 勿瞎加 svy:。[SVY] svyset
+    example: |
+      svyset psu [pweight=w], strata(stratum)
+      svy: mean mpg
+      svy: regress y x1 x2
+      svy: tabulate a b, row
+    tags: [svy, svyset, survey, pweight]
+
+  - id: cmd.macro
+    family: program
+    summary: 局部/全局宏
+    api: local / global
+    notes: >
+      优先 local；展开 `name' / $name。local 名在程序/do 块结束释放。
+      复合引号 `"..."'。计数 `c(N)' 等见 creturn。
+    example: |
+      local y price
+      local xlist "mpg weight"
+      regress `y' `xlist'
+      global outdir "C:/out"
+      graph export "$outdir/fig.png", replace
+    tags: [macro, local, global]
+
+  - id: cmd.levelsof
+    family: program
+    summary: 提取变量唯一水平到宏
+    api: levelsof
+    notes: >
+      levelsof varname, local(levels) [clean missing]。
+      常与 foreach 遍历类别。类似但不同于 tabulate, matrow()。
+    example: |
+      levelsof foreign, local(lv)
+      foreach g of local lv {
+          quietly summarize mpg if foreign==`g'
+          display `g', r(mean)
+      }
+    tags: [levelsof, macro, loop]
+
+  - id: cmd.program_define
+    family: program
+    summary: 自定义 r-class/e-class 程序
+    api: program / args / syntax
+    notes: >
+      program define mycmd [, rclass eclass]。syntax 解析选项；return scalar|local。
+      改 ado 后 discard 重载。详见 [P] program。[P] syntax
+    example: |
+      program define mysum, rclass
+          syntax varname [if] [in]
+          quietly summarize `varlist' `if' `in'
+          return scalar mean = r(mean)
+      end
+      mysum price
+      display r(mean)
+    tags: [program, syntax, ado]
+
+  - id: cmd.foreach_forvalues
+    family: program
+    summary: 循环
+    api: foreach / forvalues / while
+    notes: >
+      foreach v of varlist|local|global|numlist … { }；
+      forvalues i = 1/10 { }；while 条件 { }。勿忘闭合 }。
+    example: |
+      foreach v of varlist mpg weight price {
+          summarize `v'
+      }
+      forvalues i = 1/5 {
+          display `i'
+      }
+      local i = 1
+      while `i' <= 3 {
+          display `i'
+          local ++i
+      }
+    tags: [foreach, forvalues, loop]
+
+  - id: cmd.tempfile
+    family: program
+    summary: 临时文件/变量名
+    api: tempfile / tempvar / tempname
+    notes: >
+      tempfile f → 路径在 `f'（自动清理）。tempvar t → 生成 `t' 名避免冲突。
+      脚本中合并中间结果常用。
+    example: |
+      tempfile chunk
+      save "`chunk'"
+      use "`chunk'", clear
+      tempvar t
+      generate `t' = price / mpg
+    tags: [tempfile, tempvar, tempname]
+
+  - id: cmd.return_ereturn
+    family: program
+    summary: r() / e() / c() 返回值
+    api: return list / ereturn list / creturn list
+    notes: >
+      会被后续命令覆盖 → 立刻存 local/scalar/estimates。
+      r() 通用结果；e() 估计；c() 系统常数（c(pwd) c(N) c(current_date)）。
+    example: |
+      summarize price
+      display r(mean)
+      return list
+      regress mpg weight
+      display e(r2)
+      ereturn list
+      display c(pwd)
+    tags: [r-class, e-class, c-class, return]
+
+  - id: cmd.log
+    family: program
+    summary: 会话日志
+    api: log / cmdlog / translate
+    notes: >
+      log using "file" [, replace append text smcl]。默认 smcl；
+      translate file.smcl file.pdf|txt。cmdlog 只记命令。
+    example: |
+      log using "C:/session", replace
+      * ...
+      log close
+      translate session.smcl session.pdf
+    tags: [log, smcl]
+
+  - id: cmd.set_obs
+    family: program
+    summary: 创建空观测 / 设观测数
+    api: set obs
+    notes: set obs # 在空数据或扩容时用；常接 generate。
+    example: |
+      clear
+      set obs 100
+      generate id = _n
+    tags: [set obs, create]
+
+  - id: cmd.scalar_matrix
+    family: program
+    summary: 标量与矩阵（轻量）
+    api: scalar / matrix / matlist
+    notes: >
+      scalar a = r(mean)。matrix b = e(b)。matlist 显示。
+      复杂矩阵代数用 Mata。勿与数据集变量混淆。
+    example: |
+      quietly summarize price
+      scalar mu = r(mean)
+      display mu
+      matrix B = e(b)
+      matlist B
+    tags: [scalar, matrix]
+
+  - id: cmd.which_ssc
+    family: program
+    summary: 定位命令 / 装社区包
+    api: which / findit / ssc
+    notes: >
+      which cmd 显示 ado 路径。社区包：ssc install pkg [, replace]。
+      Soft Pack 默认勿随意装包；用户明确要求或官方命令不足时再装。
+      findit keyword 搜索。
+    example: |
+      which regress
+      findit reghdfe
+      * ssc install reghdfe, replace
+    tags: [which, ssc, findit, ado]
+
+  # ── timeseries ───────────────────────────────────────────
+  - id: cmd.tsset
+    family: timeseries
+    summary: 声明时序 / 面板时序
+    api: tsset / tsfill
+    notes: >
+      tsset timevar [, daily|weekly|monthly|quarterly|yearly delta()]；
+      tsset panelvar timevar 兼作面板（可免 xtset）。
+      单位可从 %t 格式推断。delta() 设观测间隔（%tc 常用 delta(1 hour)）。
+      tsfill [, full] 补齐空隙时间。tsset, clear 清除设定。[TS] tsset
+    example: |
+      format date %td
+      tsset date, daily
+      tsset id date, daily
+      tsfill
+      tsset
+    tags: [tsset, tsfill, time-series]
+
+  - id: cmd.tsops
+    family: timeseries
+    summary: 时序算子 L. F. D. S.
+    api: L. / F. / D. / S.
+    notes: >
+      须先 tsset/xtset。L.x 滞后；F.x 超前；D.x 一阶差分；D2. 差分之差分；
+      S.#. 季节差分。L(1/3).x 展成 L. L2. L3.。可组合 L2D.x。
+      样本因缺失初始期变少。[U] 11.4.4 [TS] tsset
+    example: |
+      tsset year, yearly
+      generate gnp_l1 = L.gnp
+      regress y L(1/2).x D.z
+      list year gnp L(1/3).gnp in 1/8
+    tags: [lag, lead, difference, L, F, D]
+
+  - id: cmd.newey_praisc
+    family: timeseries
+    summary: 时序 OLS 与序列相关稳健
+    api: newey / prais / regress
+    notes: >
+      newey y x, lag(#) 对 HAC/Newey–West SE（须 tsset）。
+      prais 处理 AR(1)。简单滞后回归：regress y L.y x, vce(robust)。
+      正式 ARIMA 见 arima。[TS] newey [TS] prais
+    example: |
+      tsset t
+      newey y x1 x2, lag(3)
+      prais y x1 x2, corc
+      regress y L.y x1, vce(robust)
+    tags: [newey, prais, hac, serial]
+
+  - id: cmd.arima
+    family: timeseries
+    summary: ARIMA / ARMAX 入门
+    api: arima
+    notes: >
+      arima y, arima(#p,#d,#q) [, sarima() noconstant]。
+      含外生：arima y x, arima(…). 估计后 predict / estat。
+      定阶需 ACF/PACF（corrgram / ac / pac）。[TS] arima
+    example: |
+      tsset t
+      corrgram y, lags(20)
+      arima y, arima(1,1,1)
+      predict yhat
+    tags: [arima, corrgram, forecast]
+
+  # ── survival ─────────────────────────────────────────────
+  - id: cmd.stset
+    family: survival
+    summary: 声明生存时间数据
+    api: stset / streset / st
+    notes: >
+      单记录: stset timevar [, failure(failvar|failvar==numlist) origin() enter()
+      exit() scale()]。failure() 省略则皆失败；failvar=0/. 为删失。
+      多记录: 必须 id(idvar) 与 failure()。origin 定义风险起点；scale(365.25) 把日变年。
+      st / streset 查看或改设定。权重在 stset 时声明。[ST] stset
+    example: |
+      stset time, failure(died)
+      stset time, failure(event==1 2) origin(time start) scale(365.25)
+      stset time, failure(died) id(pid) origin(time txdate)
+      st
+    tags: [stset, survival, censoring]
+
+  - id: cmd.stcox
+    family: survival
+    summary: Cox 模型与生存描述
+    api: stcox / stsum / sts / stci
+    notes: >
+      先 stset。stcox varlist [, vce(robust) strata() tvc() texp()]。
+      stsum / sts list|graph|km 描述；stci 置信区间。
+      比例风险检验 estat phtest。参数模型 streg。[ST] stcox
+    example: |
+      stset time, failure(died)
+      stsum
+      sts graph, by(treat)
+      stcox age i.treat, vce(robust)
+      estat phtest, detail
+    tags: [stcox, sts, kaplan-meier, survival]
+
+  # ── report ───────────────────────────────────────────────
+  - id: cmd.putexcel
+    family: report
+    summary: 把结果写入 Excel
+    api: putexcel
+    notes: >
+      先 putexcel set "file.xlsx", replace|modify sheet("name")。
+      putexcel A1 = ("title") / A2 = matrix(e(b)) / A3 = image("fig.png") /
+      A1 = etable。绝对路径。亦可 collect export。[RPT] putexcel
+    example: |
+      putexcel set "C:/out/results.xlsx", replace sheet("regs")
+      quietly regress price mpg weight
+      putexcel A1 = ("OLS price")
+      putexcel A3 = etable
+      putexcel set "C:/out/results.xlsx", modify sheet("regs")
+      putexcel A20 = image("C:/out/fig.png")
+    tags: [putexcel, excel, deliverable]
+
+  - id: cmd.putdocx
+    family: report
+    summary: 生成 Word 报告
+    api: putdocx
+    notes: >
+      putdocx begin → putdocx paragraph / table / image → putdocx save "f.docx", replace。
+      PDF 用 putpdf。复杂表优先 collect → export。[RPT] putdocx
+    example: |
+      putdocx begin
+      putdocx paragraph, style(Heading1)
+      putdocx text ("Results")
+      putdocx image "C:/out/fig.png", width(5)
+      putdocx save "C:/out/report.docx", replace
+    tags: [putdocx, word, deliverable]
+
+  - id: cmd.collect_export
+    family: report
+    summary: collect 定制表并导出
+    api: collect / table
+    notes: >
+      估计后 collect: 或 table …, collect。collect style / layout 后
+      collect export "out.xlsx|.pdf|.docx|.html", replace。
+      比手拼 putexcel 更适合多模型对比。[TABLES] collect
+    example: |
+      collect clear
+      collect: regress price mpg
+      collect: regress price mpg weight
+      collect export "C:/out/models.xlsx", replace
+    tags: [collect, export, table, deliverable]
+
+  # ── extra transform / stats / graph ───────────────────────
+  - id: cmd.mvdecode
+    family: transform
+    summary: 哨兵值 ↔ 缺失
+    api: mvdecode / mvencode
+    notes: >
+      mvdecode varlist, mv(99=-99=.a) 把哨兵变缺失；
+      mvencode 反向（导出前）。勿与真正数值混淆。
+    example: |
+      mvdecode income age, mv(999 9999=.a)
+      mvencode income, mv(.=-1)
+    tags: [mvdecode, missing, sentinel]
+
+  - id: cmd.pca_factor
+    family: stats
+    summary: 主成分 / 因子分析入门
+    api: pca / factor / rotate / predict
+    notes: >
+      pca varlist [, components(#) vce()]。factor, pcf。
+      rotate；predict score。信噪与解释需领域判断。[MV] pca
+    example: |
+      pca x1-x10, components(3)
+      rotate
+      predict f1 f2 f3, score
+    tags: [pca, factor, multivariate]
+
+  - id: cmd.alpha
+    family: stats
+    summary: 量表信度 Cronbach α
+    api: alpha
+    notes: alpha item1 item2 … [, casewise generate() detail]。α 低则检查条目方向。
+    example: |
+      alpha q1-q10, detail casewise
+    tags: [alpha, reliability, cronbach]
+
+  - id: cmd.prtest
+    family: stats
+    summary: 比例检验
+    api: prtest / bitest
+    notes: >
+      prtest varname == #；prtest varname, by(group)。
+      bitest 精确二项。ci proportions 出置信区间。
+    example: |
+      prtest foreign == 0.3
+      prtest foreign, by(rep78)
+      bitest foreign == 0.5
+    tags: [prtest, bitest, proportion]
+
+  - id: cmd.kwallis
+    family: stats
+    summary: Kruskal–Wallis 多样本秩和
+    api: kwallis / median
+    notes: kwallis varname, by(group)。正态假设不稳、多组时用。两样本见 ranksum。
+    example: |
+      kwallis mpg, by(rep78)
+    tags: [kwallis, nonparametric]
+
+  - id: cmd.graph_matrix
+    family: graph
+    summary: 散点矩阵 / 合并图
+    api: graph matrix / graph combine / graph copy
+    notes: >
+      graph matrix varlist [, half maxes()]。
+      graph combine g1 g2, cols(2)。graph display / graph use 调已存 .gph。
+    example: |
+      graph matrix price mpg weight, half
+      scatter mpg weight, name(g1, replace)
+      histogram mpg, name(g2, replace)
+      graph combine g1 g2, cols(2)
+      graph export "C:/out/panel.png", replace
+    tags: [matrix, combine, graph]
+
+  # ── safety ───────────────────────────────────────────────
+  - id: rule.syntax
+    family: safety
+    summary: 总语法与 if/in/by 硬性规则
+    api: "[U] 11 Language syntax"
+    notes: >
+      总式 [prefix:] command [varlist] [=exp] [if] [in] [weight] [, options]。
+      非破坏命令省略 varlist=全部；破坏性须显式（drop _all）。
+      if 最多一个；多条件 &|；禁止 and/or、禁止两个 if。比较 == 赋值 =。
+      in 为绝对观测号，不与 by: 同用。by 须已 sort 或 by varlist, sort:。
+      选项 clear、文件 replace 不可缩写；drop/keep/replace/discard/erase 全拼。
+      权重 fweight aweight pweight iweight。因子 i. / c.x##i.a。
+      除 capture/quietly/noisily 外前缀要冒号。
+    example: |
+      [by varlist:] command [varlist] [=exp] [if exp] [in range] [weight] [, options]
+      summarize mpg if foreign==0 & mpg>20
+      by foreign, sort: summarize mpg
+    tags: [syntax, if, ==, by, weight]
+
+  - id: rule.weights
+    family: safety
+    summary: 四类权重选用
+    api: fweight / aweight / pweight / iweight
+    notes: >
+      fweight=频数；aweight=解析/逆方差；pweight=抽样/概率（估 SE 用）；
+      iweight=重要性（程序员）。svy 场景先 svyset。不是所有命令都支持全部权重。
+      [U] 11.1.6 weight
+    example: |
+      summarize mpg [fweight=count]
+      regress y x [pweight=w], vce(robust)
+      svyset psu [pweight=w], strata(str)
+    tags: [weight, fweight, pweight, aweight]
+
+  - id: rule.missing
+    family: safety
+    summary: 缺失值规则（. .a–.z ""）
+    api: missing()
+    notes: >
+      数值缺失 . 及 .a–.z 大于任何数：if x>5 包含缺失 → 加 & !missing(x)。
+      字符串缺失为 ""。扩展缺失可赋值 .a 区分原因。missing(x1,x2) 任缺为真。
+    example: |
+      list make if missing(rep78)
+      summarize if mpg>20 & !missing(mpg)
+      drop if missing(price)
+      replace note = .a if unavailable
+    tags: [missing, ., trap]
+
+  - id: rule.abbrev
+    family: safety
+    summary: 缩写安全例外
+    api: "[U] 11.2"
+    notes: >
+      drop/replace/discard/erase 与选项 clear、文件 replace 须全拼。
+      set varabbrev off 禁止变量名缩写，脚本更安全。
+    example: |
+      set varabbrev off
+      drop price
+      save "out.dta", replace
+    tags: [abbreviation, clear, replace]
+
+  - id: rule.rcodes
+    family: safety
+    summary: 常见返回码处理
+    api: _rc / r(#)
+    notes: >
+      capture 后 display _rc。非 0 即失败。完整列表见 help error。
+    example: |
+      * r(601) file not found → 绝对路径 / pwd
+      * r(603) file read-only / in use
+      * r(5) not sorted → by …, sort: 或先 sort
+      * r(110) already defined → replace 或先 drop
+      * r(111) variable not found → describe / 拼写
+      * r(198) invalid syntax → help <cmd>
+      * r(9) assert/merge assert 失败
+      * r(459) merge 键类型冲突 → force 慎用或先统一类型
+      * r(451) tsset/stset 设定不一致 → 重 tsset/stset
+    tags: [error, r601, r5, r110, _rc]
+
+  - id: cmd.mi
+    family: transform
+    summary: 多重插补入门
+    api: mi set / mi impute / mi estimate / mi unregister
+    notes: >
+      mi set mlong|flong|wide|flongsep → mi register imputed|regular|passive →
+      mi impute regress|logit|chained … = …, add(#) → mi estimate: regress …
+      插补模型须含分析变量。进阶见 [MI]。勿与简单 replace 填均值混用。
+    example: |
+      mi set mlong
+      mi register imputed income educ
+      mi register regular age female
+      mi impute chained (regress) income (logit) female = age, add(20) rseed(1)
+      mi estimate: regress income age i.female
+    tags: [mi, impute, multiple-imputation]

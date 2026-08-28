@@ -1,0 +1,3078 @@
+{
+  "schema": "excel-com/form-inspect/v1.1",
+  "sheets": [
+    {
+      "index": 1,
+      "name": "Sheet1",
+      "used": {
+        "r0": 1,
+        "c0": 2,
+        "r1": 10,
+        "c1": 20
+      },
+      "slot_count": 18,
+      "layout_hint": "table_rows"
+    }
+  ],
+  "facts": {
+    "sheets": [
+      {
+        "sheet": "Sheet1",
+        "used": {
+          "r0": 1,
+          "c0": 2,
+          "r1": 10,
+          "c1": 20
+        },
+        "cells": [
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 2,
+            "address": "B1",
+            "text": "学号*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 3,
+            "address": "C1",
+            "text": "姓名*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 4,
+            "address": "D1",
+            "text": "学年学期*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 5,
+            "address": "E1",
+            "text": "课程编号*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 6,
+            "address": "F1",
+            "text": "课程名称*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 7,
+            "address": "G1",
+            "text": "课程属性*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 8,
+            "address": "H1",
+            "text": "学时*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 9,
+            "address": "I1",
+            "text": "成绩方式*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 10,
+            "address": "J1",
+            "text": "学分*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 11,
+            "address": "K1",
+            "text": "分数成绩",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 12,
+            "address": "L1",
+            "text": "等级成绩",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 13,
+            "address": "M1",
+            "text": "成绩标志",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 14,
+            "address": "N1",
+            "text": "成绩备注",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 15,
+            "address": "O1",
+            "text": "修读方式",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 16,
+            "address": "P1",
+            "text": "考试性质*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 17,
+            "address": "Q1",
+            "text": "考核方式",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 18,
+            "address": "R1",
+            "text": "课程性质*",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 19,
+            "address": "S1",
+            "text": "补考学期",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 1,
+            "col": 20,
+            "address": "T1",
+            "text": "备注",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 2,
+            "address": "B2",
+            "text": "填校区学号",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 3,
+            "address": "C2",
+            "text": "学生姓名",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 4,
+            "address": "D2",
+            "text": "实际修读学期",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 5,
+            "address": "E2",
+            "text": "学生不填",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 6,
+            "address": "F2",
+            "text": "成绩单所示实际课程名称\n注意括号格式。",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 7,
+            "address": "G2",
+            "text": "填“拟被替代的校区课程属性”",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 8,
+            "address": "H2",
+            "text": "成绩单所示实际学时",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 9,
+            "address": "I2",
+            "text": "成绩单记录成绩方式：\n1.百分记载则选“百分制，”\n2.“通过&不通过”则填“两分制”\n3.“优良中差”于校区对应的成绩，填“五级制”",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 10,
+            "address": "J2",
+            "text": "成绩单所示实际学分",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 11,
+            "address": "K2",
+            "text": "成绩单所示实际成绩",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 12,
+            "address": "L2",
+            "text": "两分制或五级级制填写",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 13,
+            "address": "M2",
+            "text": "空着不填",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 14,
+            "address": "N2",
+            "text": "空着不填",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 15,
+            "address": "O2",
+            "text": "默认填首修，如有重修情况，填“重修”",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 16,
+            "address": "P2",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 17,
+            "address": "Q2",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 18,
+            "address": "R2",
+            "text": "填“拟被替代的校区课程性质”",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 19,
+            "address": "S2",
+            "text": "如无补考，则不填。",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 2,
+            "col": 20,
+            "address": "T2",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 2,
+            "address": "B3",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 3,
+            "address": "C3",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 4,
+            "address": "D3",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 5,
+            "address": "E3",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 6,
+            "address": "F3",
+            "text": "博弈论基础",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 7,
+            "address": "G3",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 8,
+            "address": "H3",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 9,
+            "address": "I3",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 10,
+            "address": "J3",
+            "text": "2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 11,
+            "address": "K3",
+            "text": "88",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 12,
+            "address": "L3",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 13,
+            "address": "M3",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 14,
+            "address": "N3",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 15,
+            "address": "O3",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 16,
+            "address": "P3",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 17,
+            "address": "Q3",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 18,
+            "address": "R3",
+            "text": "专业必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 19,
+            "address": "S3",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 3,
+            "col": 20,
+            "address": "T3",
+            "text": "2024-2025学年 交流生成绩1条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 2,
+            "address": "B4",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 3,
+            "address": "C4",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 4,
+            "address": "D4",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 5,
+            "address": "E4",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 6,
+            "address": "F4",
+            "text": "定向越野",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 7,
+            "address": "G4",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 8,
+            "address": "H4",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 9,
+            "address": "I4",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 10,
+            "address": "J4",
+            "text": "1",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 11,
+            "address": "K4",
+            "text": "100",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 12,
+            "address": "L4",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 13,
+            "address": "M4",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 14,
+            "address": "N4",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 15,
+            "address": "O4",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 16,
+            "address": "P4",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 17,
+            "address": "Q4",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 18,
+            "address": "R4",
+            "text": "通识必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 19,
+            "address": "S4",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 4,
+            "col": 20,
+            "address": "T4",
+            "text": "2024-2025学年 交流生成绩2条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 2,
+            "address": "B5",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 3,
+            "address": "C5",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 4,
+            "address": "D5",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 5,
+            "address": "E5",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 6,
+            "address": "F5",
+            "text": "毛泽东思想和中国特色社会主义理论体系概论",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 7,
+            "address": "G5",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 8,
+            "address": "H5",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 9,
+            "address": "I5",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 10,
+            "address": "J5",
+            "text": "2.5",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 11,
+            "address": "K5",
+            "text": "94",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 12,
+            "address": "L5",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 13,
+            "address": "M5",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 14,
+            "address": "N5",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 15,
+            "address": "O5",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 16,
+            "address": "P5",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 17,
+            "address": "Q5",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 18,
+            "address": "R5",
+            "text": "专业必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 19,
+            "address": "S5",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 5,
+            "col": 20,
+            "address": "T5",
+            "text": "2024-2025学年 交流生成绩3条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 2,
+            "address": "B6",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 3,
+            "address": "C6",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 4,
+            "address": "D6",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 5,
+            "address": "E6",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 6,
+            "address": "F6",
+            "text": "全球财政公共学",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 7,
+            "address": "G6",
+            "text": "任选",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 8,
+            "address": "H6",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 9,
+            "address": "I6",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 10,
+            "address": "J6",
+            "text": "2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 11,
+            "address": "K6",
+            "text": "94",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 12,
+            "address": "L6",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 13,
+            "address": "M6",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 14,
+            "address": "N6",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 15,
+            "address": "O6",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 16,
+            "address": "P6",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 17,
+            "address": "Q6",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 18,
+            "address": "R6",
+            "text": "专业选修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 19,
+            "address": "S6",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 6,
+            "col": 20,
+            "address": "T6",
+            "text": "2024-2025学年 交流生成绩4条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 2,
+            "address": "B7",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 3,
+            "address": "C7",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 4,
+            "address": "D7",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 5,
+            "address": "E7",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 6,
+            "address": "F7",
+            "text": "神经网络",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 7,
+            "address": "G7",
+            "text": "任选",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 8,
+            "address": "H7",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 9,
+            "address": "I7",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 10,
+            "address": "J7",
+            "text": "2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 11,
+            "address": "K7",
+            "text": "92",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 12,
+            "address": "L7",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 13,
+            "address": "M7",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 14,
+            "address": "N7",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 15,
+            "address": "O7",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 16,
+            "address": "P7",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 17,
+            "address": "Q7",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 18,
+            "address": "R7",
+            "text": "专业选修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 19,
+            "address": "S7",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 7,
+            "col": 20,
+            "address": "T7",
+            "text": "2024-2025学年 交流生成绩5条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 2,
+            "address": "B8",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 3,
+            "address": "C8",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 4,
+            "address": "D8",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 5,
+            "address": "E8",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 6,
+            "address": "F8",
+            "text": "统计建模与统计实验",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 7,
+            "address": "G8",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 8,
+            "address": "H8",
+            "text": "48",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 9,
+            "address": "I8",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 10,
+            "address": "J8",
+            "text": "3",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 11,
+            "address": "K8",
+            "text": "88",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 12,
+            "address": "L8",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 13,
+            "address": "M8",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 14,
+            "address": "N8",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 15,
+            "address": "O8",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 16,
+            "address": "P8",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 17,
+            "address": "Q8",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 18,
+            "address": "R8",
+            "text": "专业必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 19,
+            "address": "S8",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 8,
+            "col": 20,
+            "address": "T8",
+            "text": "2024-2025学年 交流生成绩6条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 2,
+            "address": "B9",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 3,
+            "address": "C9",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 4,
+            "address": "D9",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 5,
+            "address": "E9",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 6,
+            "address": "F9",
+            "text": "应用抽样技术",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 7,
+            "address": "G9",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 8,
+            "address": "H9",
+            "text": "48",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 9,
+            "address": "I9",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 10,
+            "address": "J9",
+            "text": "3",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 11,
+            "address": "K9",
+            "text": "97",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 12,
+            "address": "L9",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 13,
+            "address": "M9",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 14,
+            "address": "N9",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 15,
+            "address": "O9",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 16,
+            "address": "P9",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 17,
+            "address": "Q9",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 18,
+            "address": "R9",
+            "text": "专业必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 19,
+            "address": "S9",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 9,
+            "col": 20,
+            "address": "T9",
+            "text": "2024-2025学年 交流生成绩7条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": false,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 2,
+            "address": "B10",
+            "text": "2023016706",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 3,
+            "address": "C10",
+            "text": "谷晓慧",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 4,
+            "address": "D10",
+            "text": "2024-2025-2",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 5,
+            "address": "E10",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 6,
+            "address": "F10",
+            "text": "游泳",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 7,
+            "address": "G10",
+            "text": "必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 8,
+            "address": "H10",
+            "text": "32",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 9,
+            "address": "I10",
+            "text": "百分制",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 10,
+            "address": "J10",
+            "text": "1",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 11,
+            "address": "K10",
+            "text": "93",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 12,
+            "address": "L10",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 13,
+            "address": "M10",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 14,
+            "address": "N10",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 15,
+            "address": "O10",
+            "text": "首修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 16,
+            "address": "P10",
+            "text": "正常考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 17,
+            "address": "Q10",
+            "text": "考试",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 18,
+            "address": "R10",
+            "text": "通识必修",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": true
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 19,
+            "address": "S10",
+            "text": "",
+            "empty": true,
+            "has_formula": false,
+            "right_empty": false,
+            "below_empty": true,
+            "looks_like_label": false
+          },
+          {
+            "sheet": "Sheet1",
+            "row": 10,
+            "col": 20,
+            "address": "T10",
+            "text": "2024-2025学年 交流生成绩8条",
+            "empty": false,
+            "has_formula": false,
+            "right_empty": true,
+            "below_empty": true,
+            "looks_like_label": true
+          }
+        ],
+        "cell_count": 190,
+        "layout_hint": "table_rows",
+        "note": "facts only; Agent chooses write/append. suggestions/slots are optional heuristics."
+      }
+    ],
+    "layout_hint": "table_rows"
+  },
+  "suggestions": [
+    {
+      "slot_id": "Sheet1!U1",
+      "sheet": "Sheet1",
+      "label": "备注",
+      "label_norm": "备注",
+      "label_address": "T1",
+      "address": "U1",
+      "row": 1,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U1"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!T2",
+      "sheet": "Sheet1",
+      "label": "如无补考，则不填。",
+      "label_norm": "如无补考，则不填。",
+      "label_address": "S2",
+      "address": "T2",
+      "row": 2,
+      "col": 20,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "T2"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S3",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R3",
+      "address": "S3",
+      "row": 3,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U3",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩1条",
+      "label_norm": "2024-2025学年交流生成绩1条",
+      "label_address": "T3",
+      "address": "U3",
+      "row": 3,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S4",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R4",
+      "address": "S4",
+      "row": 4,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U4",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩2条",
+      "label_norm": "2024-2025学年交流生成绩2条",
+      "label_address": "T4",
+      "address": "U4",
+      "row": 4,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S5",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R5",
+      "address": "S5",
+      "row": 5,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U5",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩3条",
+      "label_norm": "2024-2025学年交流生成绩3条",
+      "label_address": "T5",
+      "address": "U5",
+      "row": 5,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S6",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R6",
+      "address": "S6",
+      "row": 6,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U6",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩4条",
+      "label_norm": "2024-2025学年交流生成绩4条",
+      "label_address": "T6",
+      "address": "U6",
+      "row": 6,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S7",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R7",
+      "address": "S7",
+      "row": 7,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U7",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩5条",
+      "label_norm": "2024-2025学年交流生成绩5条",
+      "label_address": "T7",
+      "address": "U7",
+      "row": 7,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S8",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R8",
+      "address": "S8",
+      "row": 8,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U8",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩6条",
+      "label_norm": "2024-2025学年交流生成绩6条",
+      "label_address": "T8",
+      "address": "U8",
+      "row": 8,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S9",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R9",
+      "address": "S9",
+      "row": 9,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U9",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩7条",
+      "label_norm": "2024-2025学年交流生成绩7条",
+      "label_address": "T9",
+      "address": "U9",
+      "row": 9,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S10",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R10",
+      "address": "S10",
+      "row": 10,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S10"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U10",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩8条",
+      "label_norm": "2024-2025学年交流生成绩8条",
+      "label_address": "T10",
+      "address": "U10",
+      "row": 10,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U10"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot_id": "Sheet1!U1",
+      "sheet": "Sheet1",
+      "label": "备注",
+      "label_norm": "备注",
+      "label_address": "T1",
+      "address": "U1",
+      "row": 1,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U1"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!T2",
+      "sheet": "Sheet1",
+      "label": "如无补考，则不填。",
+      "label_norm": "如无补考，则不填。",
+      "label_address": "S2",
+      "address": "T2",
+      "row": 2,
+      "col": 20,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "T2"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S3",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R3",
+      "address": "S3",
+      "row": 3,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U3",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩1条",
+      "label_norm": "2024-2025学年交流生成绩1条",
+      "label_address": "T3",
+      "address": "U3",
+      "row": 3,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U3"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S4",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R4",
+      "address": "S4",
+      "row": 4,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U4",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩2条",
+      "label_norm": "2024-2025学年交流生成绩2条",
+      "label_address": "T4",
+      "address": "U4",
+      "row": 4,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U4"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S5",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R5",
+      "address": "S5",
+      "row": 5,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U5",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩3条",
+      "label_norm": "2024-2025学年交流生成绩3条",
+      "label_address": "T5",
+      "address": "U5",
+      "row": 5,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U5"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S6",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R6",
+      "address": "S6",
+      "row": 6,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U6",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩4条",
+      "label_norm": "2024-2025学年交流生成绩4条",
+      "label_address": "T6",
+      "address": "U6",
+      "row": 6,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U6"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S7",
+      "sheet": "Sheet1",
+      "label": "专业选修",
+      "label_norm": "专业选修",
+      "label_address": "R7",
+      "address": "S7",
+      "row": 7,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U7",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩5条",
+      "label_norm": "2024-2025学年交流生成绩5条",
+      "label_address": "T7",
+      "address": "U7",
+      "row": 7,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U7"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S8",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R8",
+      "address": "S8",
+      "row": 8,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U8",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩6条",
+      "label_norm": "2024-2025学年交流生成绩6条",
+      "label_address": "T8",
+      "address": "U8",
+      "row": 8,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U8"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S9",
+      "sheet": "Sheet1",
+      "label": "专业必修",
+      "label_norm": "专业必修",
+      "label_address": "R9",
+      "address": "S9",
+      "row": 9,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U9",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩7条",
+      "label_norm": "2024-2025学年交流生成绩7条",
+      "label_address": "T9",
+      "address": "U9",
+      "row": 9,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U9"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!S10",
+      "sheet": "Sheet1",
+      "label": "通识必修",
+      "label_norm": "通识必修",
+      "label_address": "R10",
+      "address": "S10",
+      "row": 10,
+      "col": 19,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "S10"
+        }
+      ]
+    },
+    {
+      "slot_id": "Sheet1!U10",
+      "sheet": "Sheet1",
+      "label": "2024-2025学年 交流生成绩8条",
+      "label_norm": "2024-2025学年交流生成绩8条",
+      "label_address": "T10",
+      "address": "U10",
+      "row": 10,
+      "col": 21,
+      "current": "",
+      "fill_mode": "unknown",
+      "confidence": 0.4,
+      "reason": "table_rows_layout_demoted",
+      "has_formula": false,
+      "targets": [
+        {
+          "sheet": "Sheet1",
+          "address": "U10"
+        }
+      ]
+    }
+  ],
+  "form_fingerprint": "c070ce8deb95b2bf",
+  "agent_note": "Read facts.layout_hint. table_rows → Agent append_row; suggestions optional."
+}

@@ -1,0 +1,25 @@
+[project]
+name = "wordcom-bridge"
+version = "0.1.0"
+description = "通过 Microsoft Word COM 自动化安全地产生原生修订"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pywin32>=306; sys_platform == 'win32'",
+]
+
+[project.scripts]
+word-bridge-demo = "word_bridge.demo:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "word_bridge"
+module-root = ""
