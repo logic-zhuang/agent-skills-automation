@@ -1,4 +1,4 @@
-# WPS Writer COM 对象模型参考
+﻿# WPS Writer COM 对象模型参考
 
 WPS 文字 COM 接口与 Microsoft Word VBA 高度兼容；对象名（`Documents`、`Range`、`Tables` 等）通常一致。本 skill **只挂接 WPS**，不回退 `Word.Application`。
 
@@ -66,7 +66,7 @@ win32.DispatchEx("Kwps.Application")
 | `.doc` 老格式 | 可打开 | 建议统一 `.docx` 再自动化 |
 | 进程 `Quit` | 待验证 | 无文档时显式 Quit；避免 COM 泄漏 |
 
-更新本表：在本机 WPS 上跑 `examples/revise/demo_minimal_revision.py` 与 `inspect_doc.py` 后记录结果。
+更新本表：在本机 WPS 上跑 `inspect_doc.py` / 实际润色或填表流程后记录结果。
 
 ## 常量（与 Word 共用 wd* 值）
 

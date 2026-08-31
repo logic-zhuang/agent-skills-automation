@@ -12,7 +12,7 @@
 | 用户说法（示例） | 加载 skill | 目录名 |
 |------------------|------------|--------|
 | `/word …`、Word、docx 排版 | Word文档操作 | `word-com` |
-| `/wps …`、金山、WPS 文字 | wps-com | `wps-com` |
+| `/wps …`、金山、WPS 文字 | WPS文档操作 | `wps-com` |
 | `/excel …`、xlsx 填表 | Excel表格操作 | `excel-com` |
 | `/stata …`、回归、do 文件 | Stata命令行分析 | `stata-cli` |
 | `/thesis …`、石大/CUPK 套版 | CUPK本科论文套版 **+** Word文档操作 | `cupk-thesis-format` |
@@ -60,23 +60,17 @@ Word / WPS 都可能时：**先问一句**，不得静默回退到另一套 COM�
 
 | 包 | 负责 | 不负责 |
 |----|------|--------|
-| `word-com` | Word COM + MD→docx + 润色/填表/hybrid | 学校版式条文 |
-| `wps-com` | 同上能力，仅 Kwps/wps | 回退 Word；学校条文 |
-| `excel-com` | Excel 填表流水线 | Word 表、Stata putexcel 语义 |
-| `cupk-thesis-format` | CUPK 规则与 convert_ops | 单独开 Word（须同时加载 word-com） |
-| `stata-cli` | 命令窗驱动 | 菜单/UI map |
-| `thesis-format-skill-builder` | 制作新学校 skill | 运行时套版 |
+| `word-com` | Word文档操作：COM + MD→docx + 润色/填表/hybrid | 学校版式条文 |
+| `wps-com` | WPS文档操作：同上能力，仅 Kwps/wps | 回退 Word；学校条文 |
+| `excel-com` | Excel表格操作：填表流水线 | Word 表、Stata putexcel 语义 |
+| `cupk-thesis-format` | CUPK本科论文套版：规则与 convert_ops | 单独开 Word（须同时加载 Word文档操作） |
+| `stata-cli` | Stata命令行分析：命令窗驱动 | 菜单/UI map |
+| `thesis-format-skill-builder` | 高校论文套版技能制作 | 运行时套版 |
 
 安装清单（skill 仓库）：`scripts/install_openworker_skills.py` 的 `DESKTOP_SKILLS` 须与上表桌面包一致。
 
 ## 6. 回归锁稳
 
-改 SKILL / 脚本后至少跑通：
-
-```bash
-python word-com/examples/revise/demo_minimal_revision.py
-python wps-com/examples/revise/demo_minimal_revision.py
-python excel-com/examples/form-fill/demo-register/run_demo.py
-```
+改 SKILL / 脚本后，用真实用户文件在会话工作区跑通主路径即可（inspect → draft → 审阅），**不必**依赖 examples 演示目录。  
 
 路径、后端 ProgID、draft 落点与 SKILL 声明不一致 → 视为反馈失稳，先修文档或代码再合并。

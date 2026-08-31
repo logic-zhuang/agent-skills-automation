@@ -1,7 +1,7 @@
 # 场景：填表（Agent 主导）
 
-用户上传**原样** WPS/Word 格式表（.doc/.docx）+ 知识库档案。  
-系统：`inspect` 报**事实** → **Agent 定策略 / 出 fill 计划** → 脚本只写入工作副本。
+用户上传**原样**表格文档 + 知识库档案。  
+系统：`inspect` 报**事实** → **Agent 定策略 / 出 fill 计划** → 脚本只写入工作副本（WPS COM）。
 
 用户**不写** JSON（除非调试）。`slots.json` / `fill.json` 为 Agent/系统产物。
 
@@ -19,8 +19,7 @@
 
 | 环境 | 填写结果 |
 |------|----------|
-| **OpenWorker** | 会话工作区（临时对话文件夹） |
-| Cursor examples | 用例目录 draft（本地临时；正式包可删 examples） |
+| **OpenWorker / 用户会话** | 会话工作区（临时对话文件夹） |
 
 ```text
 正确：复制原文件 → 会话目录/draft.docx → 只打开 draft 填写
@@ -35,7 +34,7 @@
 3. 先看 facts.layout_hint 与 coverage（勿用 unmatched_kb 判断扫全）
 4. Agent 出 fill.json（可采纳/修改 suggestions）；低置信 → 追问
 5. auto_fill_form source.docx --fill fill.json --draft <会话>/draft.docx
-   （旧 demo：--kb ... --auto-suggest --draft ...）
+   （旧表：--kb ... --auto-suggest --draft ...）
 6. 用户审阅 draft；确认后再对 draft --save；禁止 AcceptAll
 ```
 
@@ -51,7 +50,7 @@ python <resources_path>/scripts/auto_fill_form.py "form.docx" --fill fill.json -
 # 仅建议报告、不写入
 python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json --plan plan.json
 
-# 旧表启发式（回归）
+# 旧表启发式
 python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json --auto-suggest --draft draft.docx
 ```
 
@@ -62,10 +61,3 @@ python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json 
 | `facts` | 每格 text/empty/right_empty/below_empty/…；`layout_hint` |
 | `suggestions` / `slots` | 启发式 slot（可选） |
 | `coverage` | unresolved_labels / unbound_empties |
-
-## 演示
-
-```bash
-python word-com/examples/form-fill/scholarship-cnpc/run_scholarship_demo.py
-python word-com/examples/form-fill/enrollment-undergrad/run_demo.py
-```

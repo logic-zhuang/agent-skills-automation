@@ -36,11 +36,6 @@ No menus, no dialogs, no `ui_map`, no roadmaps.
 You do **not** need to run `cli.py` by hand — the agent loads `SKILL.md` and
 runs the scripts via its shell tool.
 
-### C. Agent session test (recommended after smoke)
-
-See [TEST-AGENT.md](TEST-AGENT.md) for copy-paste prompts (L0–L4), acceptance
-checks, and failure triage when testing through Cursor / OpenWorker Agent.
-
 ### B. Standalone smoke test (optional)
 
 ```text

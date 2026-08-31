@@ -1,5 +1,5 @@
 ---
-name: wps-com
+name: WPS文档操作
 description: >-
   Windows WPS 文字 COM 执行层：打开/复用文档、Markdown→docx（md_to_docx）、inspect、
   最小修订（TrackRevisions+diff）、填表与混合文档。不含学校论文格式。用户提到 WPS、
@@ -7,7 +7,7 @@ description: >-
 source: repo
 ---
 
-# WPS COM（执行层）
+# WPS文档操作（执行层）
 
 Windows + WPS Office 文字 + `pywin32`。**只负责怎么动 WPS**，不含学校/院系格式规则。
 
@@ -20,7 +20,7 @@ Windows + WPS Office 文字 + `pywin32`。**只负责怎么动 WPS**，不含学
 宿主 App / Agent 会话在 WPS 环境下应 **同时加载**：
 
 ```text
-["wps-com", "cupk-thesis-format", ...]
+["WPS文档操作", "CUPK本科论文套版", ...]
 ```
 
 | 任务 | 读哪个 skill | 跑哪个脚本 |
@@ -31,7 +31,7 @@ Windows + WPS Office 文字 + `pywin32`。**只负责怎么动 WPS**，不含学
 | 表 + 分段框架（申请书等） | 本 skill → [scenarios/hybrid.md](scenarios/hybrid.md) | `scripts/hybrid_ops.py` |
 | 某校论文套版 | **学校 skill**（COM 路径改 wps-com） | 学校 `scripts/convert_ops.py` 等 |
 
-OpenWorker：`load_skill("wps-com")` 得 `resources_path`；**用户来稿只读**；填写/修订输出写在**会话工作区**。
+OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录名仍为 `wps-com`）；**用户来稿只读**；填写/修订输出写在**会话工作区**。
 
 **访问规则（必守）**：shell cwd 保持会话工作区；用 `"<resources_path>/scripts/..."` 跑脚本。`load_skill` 后可用 `list_files` / `read_file` 读技能目录；若仍报「超出访问范围」，改用 shell，**不要** `cd` 到 `resources_path`。
 
@@ -111,11 +111,6 @@ python <resources_path>/scripts/minimal_revision.py "doc.docx" --replace "旧" "
 python <resources_path>/scripts/minimal_revision.py --active --replace "旧" "新"
 ```
 
-演示：`python wps-com/examples/md-to-docx/run_demo.py`（MD→docx）  
-演示：`python wps-com/examples/revise/demo_minimal_revision.py`（润色）  
-演示：`python wps-com/examples/form-fill/scholarship-cnpc/run_scholarship_demo.py`（填表）  
-用例索引：[examples/README.md](examples/README.md)
-
 ## 工作流程
 
 ```
@@ -162,7 +157,6 @@ stdout 应含 `backend: Kwps.Application` 或 `wps.Application`。
 | MD → docx | `md_to_docx.py` | **同脚本** |
 | 润色 / 填表 / hybrid | 有 | **有**（`wps_session`） |
 | 学校套版 COM | 默认 | 可选（改路径） |
-| Word 格式演示脚本 | `demo.md` 等 | 不复制（非产品主路径） |
 
 页眉奇偶、分节、域、OMath、TrackRevisions、可见窗口 → 必须 COM（WPS 或 Word 二选一）。  
 **Markdown → 粗 docx**：`scripts/md_to_docx.py`（不必开 WPS）。

@@ -36,15 +36,6 @@ python <word_com>/scripts/minimal_revision.py "doc.docx" --job revise.json
 python <word_com>/scripts/minimal_revision.py "doc.docx" --paragraph 2 --new "…" --draft draft.docx
 ```
 
-## 演示
-
-```bash
-python word-com/examples/revise/create_short_essay.py
-python word-com/examples/revise/demo_minimal_revision.py
-```
-
-说明见 [examples/revise/DEMO.md](../examples/revise/DEMO.md)。
-
 ## 交付说明
 
 - 默认已 Save（修订标记仍在）；Accept/Reject 由用户在 Word 完成

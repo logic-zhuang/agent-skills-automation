@@ -4,7 +4,7 @@ description: Windows Excel COM 执行层：打开/复用工作簿、inspect 工�
 source: repo
 ---
 
-# Excel COM（执行层）
+# Excel表格操作（执行层）
 
 Windows + Microsoft Excel + `pywin32`。**只负责怎么动 Excel**，不含具体学院/业务表规则。
 
@@ -35,8 +35,7 @@ OpenWorker：`load_skill("Excel表格操作")` 得 `resources_path`；**用户�
 
 | 环境 | 原文件 | 填写输出 |
 |------|--------|----------|
-| OpenWorker | 用户上传 / 绝对路径 | **会话工作区**（临时对话文件夹） |
-| Cursor 本地演示 | Downloads / 样例 | `examples/.../_out/`（**临时**；正式 skill 不保留 examples） |
+| OpenWorker / 用户会话 | 用户上传 / 绝对路径 | **会话工作区**（临时对话文件夹） |
 
 ## 稳定反馈契约（必守）
 
@@ -111,11 +110,3 @@ python <resources_path>/scripts/com_session.py "path/to.xlsx"
 ## 与 openpyxl
 
 简单读写可用 `openpyxl`；**可见窗口审阅、数据验证、复杂打印区域、与已打开簿复用** → 必须 COM。本 skill 默认 COM。
-
-## 演示
-
-```bash
-python excel-com/examples/form-fill/demo-register/run_demo.py
-```
-
-用例索引：[examples/README.md](examples/README.md)

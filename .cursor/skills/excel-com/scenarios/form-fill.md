@@ -17,8 +17,7 @@
 
 | 环境 | 填写结果 |
 |------|----------|
-| **OpenWorker** | 会话工作区 |
-| Cursor examples | `examples/.../_out/`（临时） |
+| **OpenWorker / 用户会话** | 会话工作区 |
 
 ```text
 禁止：Open(原文件) → 改 → SaveCopyAs
@@ -59,11 +58,4 @@ python <resources_path>/scripts/auto_fill_sheet.py "form.xlsx" --fill fill.json 
 
 # 旧登记表启发式
 python <resources_path>/scripts/auto_fill_sheet.py "form.xlsx" --kb profile.json --auto-suggest --draft draft.xlsx
-```
-
-## 演示
-
-```bash
-python excel-com/examples/form-fill/demo-register/run_demo.py
-python excel-com/examples/form-fill/exchange-grades/run_demo.py
 ```

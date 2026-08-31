@@ -19,8 +19,7 @@
 
 | 环境 | 填写结果 |
 |------|----------|
-| **OpenWorker** | 会话工作区（临时对话文件夹） |
-| Cursor examples | 用例目录 draft（本地临时；正式包可删 examples） |
+| **OpenWorker / 用户会话** | 会话工作区（临时对话文件夹） |
 
 ```text
 正确：复制原文件 → 会话目录/draft.docx → 只打开 draft 填写
@@ -62,10 +61,3 @@ python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json 
 | `facts` | 每格 text/empty/right_empty/below_empty/…；`layout_hint` |
 | `suggestions` / `slots` | 启发式 slot（可选） |
 | `coverage` | unresolved_labels / unbound_empties |
-
-## 演示
-
-```bash
-python word-com/examples/form-fill/scholarship-cnpc/run_scholarship_demo.py
-python word-com/examples/form-fill/enrollment-undergrad/run_demo.py
-```

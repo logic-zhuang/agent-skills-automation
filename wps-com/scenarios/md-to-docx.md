@@ -1,4 +1,4 @@
-# 场景：Markdown → docx（OpenWorker 桥）
+﻿# 场景：Markdown → docx（OpenWorker 桥）
 
 OpenWorker 常见产物是 **Markdown**；后续填表、润色、学校套版都要 **.docx**。  
 本场景用 `python-docx` 做**粗转**（不必开 WPS），不替代学校排版。
@@ -44,8 +44,3 @@ python <resources_path>/scripts/md_to_docx.py "article.md" --out "article.docx" 
 | 简单 GFM 表格 | 合并单元格 |
 | 围栏代码块 | LaTeX / OMath |
 
-## 演示
-
-```bash
-python wps-com/examples/md-to-docx/run_demo.py
-```

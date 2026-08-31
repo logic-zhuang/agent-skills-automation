@@ -93,7 +93,7 @@ def open_workbook(excel: Any, path: Path, *, read_only: bool = False) -> Any:
 def clone_for_edit(excel: Any, src: Path, dest: Path) -> Path:
     """Copy src → dest on disk. Never write the original.
 
-    OpenWorker: dest under session workspace. Demos may use examples/_out (temporary).
+    OpenWorker / user session: dest under session workspace.
     """
     src = src.resolve()
     dest = dest.resolve()

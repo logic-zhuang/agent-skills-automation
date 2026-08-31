@@ -55,8 +55,6 @@ python <resources_path>/scripts/minimal_revision.py "essay.docx" --paragraph 2 -
 python <resources_path>/scripts/minimal_revision.py "essay.docx" --paragraph 2 --new "…" --draft draft.docx
 ```
 
-演示：`python word-com/examples/revise/demo_minimal_revision.py`
-
 ### revise.json
 
 ```json

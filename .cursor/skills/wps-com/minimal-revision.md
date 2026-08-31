@@ -1,4 +1,4 @@
-# 最小修订（默认改稿策略）
+﻿# 最小修订（默认改稿策略）
 
 **已有 WPS 正文的修改，默认走本流程。** 场景入口见 [scenarios/revise.md](scenarios/revise.md)。用户不必说「最小修订」。
 
@@ -54,8 +54,6 @@ python <resources_path>/scripts/minimal_revision.py "essay.docx" --paragraph 2 -
 # 另存草稿
 python <resources_path>/scripts/minimal_revision.py "essay.docx" --paragraph 2 --new "…" --draft draft.docx
 ```
-
-演示：`python word-com/examples/revise/demo_minimal_revision.py`
 
 ### revise.json
 

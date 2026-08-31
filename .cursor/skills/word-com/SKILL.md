@@ -8,7 +8,7 @@ description: >-
 source: repo
 ---
 
-# Word COM（执行层）
+# Word文档操作（执行层）
 
 Windows + Microsoft Word + `pywin32`。**只负责怎么动 Word**，不含学校/院系格式规则。  
 与 [wps-com](../wps-com/SKILL.md) **产品能力对齐**（MD→docx / 润色 / 填表 / hybrid）；本 skill 仅挂接 Microsoft Word。
@@ -80,7 +80,6 @@ OpenWorker：`load_skill("Word文档操作")` 与 `load_skill("CUPK本科论文�
 |-------------|------|
 | [reference.md](reference.md) | COM 对象、常量、坑 |
 | [minimal-revision.md](minimal-revision.md) | 最小修订策略详解 |
-| [demo.md](demo.md) | 格式能力演示脚本 |
 | [scenarios/md-to-docx.md](scenarios/md-to-docx.md) | OpenWorker MD → 粗 docx |
 | [scenarios/revise.md](scenarios/revise.md) | 批改流程 |
 | [scenarios/form-fill.md](scenarios/form-fill.md) | 填表：结构报告 → plan → 修订草稿 → 用户确认再定稿 |
@@ -113,11 +112,6 @@ python <resources_path>/scripts/minimal_revision.py "doc.docx" --paragraph 2 --n
 python <resources_path>/scripts/minimal_revision.py "doc.docx" --replace "旧" "新"
 python <resources_path>/scripts/minimal_revision.py --active --replace "旧" "新"
 ```
-
-演示：`python word-com/examples/md-to-docx/run_demo.py`（MD→Word）  
-演示：`python word-com/examples/form-fill/scholarship-cnpc/run_scholarship_demo.py`（填表）  
-演示：`python word-com/examples/revise/demo_minimal_revision.py`（润色）  
-用例索引：[examples/README.md](examples/README.md)
 
 ## 工作流程
 

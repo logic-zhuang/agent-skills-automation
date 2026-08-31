@@ -98,7 +98,7 @@ def cell_text(cell) -> str:
 def clone_for_edit(word: Any, src: Path, dest: Path) -> Path:
     """Copy src → dest on disk. Never write the original.
 
-    OpenWorker: dest under session workspace. Demos may use examples/_out (temporary).
+    OpenWorker / user session: dest under session workspace.
     """
     import shutil
 

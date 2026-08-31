@@ -43,9 +43,3 @@ python <resources_path>/scripts/md_to_docx.py "article.md" --out "article.docx" 
 | 围栏代码块 | LaTeX / OMath |
 
 输出是**可编辑草稿**，中文字体默认宋体 + Times New Roman；页眉页码、石大格式由后续 skill 处理。
-
-## 演示
-
-```bash
-python word-com/examples/md-to-docx/run_demo.py
-```
