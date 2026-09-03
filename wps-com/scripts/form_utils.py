@@ -68,6 +68,12 @@ DEFAULT_ALIASES: dict[str, list[str]] = {
     "宗教信仰": ["religion"],
     "港澳台侨": ["hmt_status", "gangaotai"],
     "外语（语种）": ["foreign_language", "language"],
+    "语文": ["chinese_score", "yuwen"],
+    "数学": ["math_score", "shuxue"],
+    "总分": ["total_score", "gaokao_total"],
+    "考生类别": ["candidate_category", "examinee_category", "kslb"],
+    "招生类别": ["admission_category", "zslb"],
+    "乘车区间": ["travel_segment", "train_to", "乘车区间至"],
     "信教开始时间": ["religion_start"],
     "年级": ["grade", "nj"],
     "申请项目": ["application_item", "project", "sqxm"],
@@ -122,6 +128,12 @@ PROFILE_KEY_MAP: dict[str, str] = {
     "宗教信仰": "religion",
     "港澳台侨": "hmt_status",
     "外语（语种）": "foreign_language",
+    "语文": "chinese_score",
+    "数学": "math_score",
+    "总分": "total_score",
+    "考生类别": "candidate_category",
+    "招生类别": "admission_category",
+    "乘车区间": "travel_segment",
     "信教开始时间": "religion_start",
     "申请理由": "application_reason",
     "申请项目": "application_item",
@@ -139,6 +151,8 @@ PHONE_LIKE_LABELS = frozenset({"联系电话", "手机号", "手机", "电话", 
 
 CHECK_MARK = "☑"
 CHECKBOX_PAIR_RE = re.compile(r"([是否])\s*([□☐☑✓])")
+# □农应 / ☑城应 等选项（标记 + 可选空白 + 标签）
+MULTI_CHECKBOX_ITEM_RE = re.compile(r"([□☐☑✓])(\s*)([^\s□☐☑✓]+)")
 INLINE_RANK_RE = re.compile(r"(.*?排名：)\s*([^/]*?)\s*/\s*([^（]*?)（名次/总人数）")
 INLINE_COURSE_RE = re.compile(r"(必修课)\s*(\S*)\s*(门，其中及格以上)\s*(\S*)\s*(门)")
 
@@ -432,6 +446,8 @@ def pick_fill_zone(
         return right
     if r_mode == "unknown" and "multi_checkbox" in r_reason:
         return right
+    if r_mode == "checkbox_group":
+        return right
 
     below_ok = (below.get("reason") or "").startswith("label+below")
     if not below_ok:
@@ -553,14 +569,14 @@ def classify_fill_zone(
                 "date_style": style,
                 "current": val_text.strip(),
             }
-        # Multi □ in the value cell (not simple 是/否 pair)
-        if count_box_marks(val_text) >= 2 and not has_checkbox_marks(val_text):
+        # Multi □ in the value cell (not simple 是/否 pair) → checkbox_group
+        if cell_looks_like_multi_checkbox(val_text):
             return {
-                "fill_mode": "unknown",
-                "kind": "unknown",
+                "fill_mode": "checkbox_group",
+                "kind": "checkbox_group",
                 "cols": [c_val],
                 "targets": [{"row": None, "col": c_val}],
-                "confidence": 0.35,
+                "confidence": 0.8,
                 "reason": "multi_checkbox_right",
                 "current": val_text.strip(),
             }
@@ -636,6 +652,16 @@ def try_below_fill_zone(
             "current": below_text.strip(),
         }
     if count_box_marks(below_text) >= 2 and not has_checkbox_marks(below_text):
+        if cell_looks_like_multi_checkbox(below_text):
+            return {
+                "fill_mode": "checkbox_group",
+                "kind": "checkbox_group",
+                "cols": [label_col],
+                "targets": [{"row": below_r, "col": label_col}],
+                "confidence": 0.78,
+                "reason": "multi_checkbox_below",
+                "current": below_text.strip(),
+            }
         return {
             "fill_mode": "unknown",
             "kind": "unknown",
@@ -1011,6 +1037,101 @@ def apply_checkbox_choice(text: str, choice: Any) -> str:
     return CHECKBOX_PAIR_RE.sub(lambda m: "否 ☑" if m.group(1) == "否" else "是 □", text)
 
 
+def _choice_tokens(choice: Any) -> set[str]:
+    if choice is None:
+        return set()
+    if isinstance(choice, (list, tuple, set)):
+        parts = [str(x) for x in choice]
+    else:
+        parts = re.split(r"[,，、/;|]+", str(choice))
+    return {normalize_label(p) for p in parts if str(p).strip()}
+
+
+def apply_multi_checkbox(text: str, choice: Any) -> str | None:
+    """Mark matching □ options as ☑; keep all other options. Never delete labels.
+
+    Example:
+      text='□农应\\t□农往\\t□城应\\t□城往', choice='城应'
+      → '□农应\\t□农往\\t☑城应\\t□城往'
+    """
+    wanted = _choice_tokens(choice)
+    if not wanted or not text or count_box_marks(text) < 1:
+        return None
+
+    hit_any = False
+
+    def repl(m: re.Match[str]) -> str:
+        nonlocal hit_any
+        _mark, spaces, label = m.group(1), m.group(2), m.group(3)
+        ln = normalize_label(label)
+        matched = any(w == ln or w in ln or ln in w for w in wanted if w)
+        if matched:
+            hit_any = True
+            return f"☑{spaces}{label}"
+        return f"□{spaces}{label}"
+
+    new_text = MULTI_CHECKBOX_ITEM_RE.sub(repl, text)
+    if not hit_any:
+        return None
+    return new_text
+
+
+def cell_looks_like_multi_checkbox(text: str) -> bool:
+    if count_box_marks(text or "") < 2:
+        return False
+    if has_checkbox_marks(text):  # 是□否□ pair — different handler
+        return False
+    return bool(MULTI_CHECKBOX_ITEM_RE.search(text or ""))
+
+
+def collapse_duplicated_checkbox_line(text: str) -> str:
+    """If a prior TrackRevisions write duplicated the option line, keep the first copy."""
+    t = text or ""
+    m = MULTI_CHECKBOX_ITEM_RE.search(t)
+    if not m:
+        return t
+    first = m.group(0)
+    pos = t.find(first, m.end())
+    if pos > 0 and count_box_marks(t) >= 4:
+        return t[:pos]
+    return t
+
+
+def resolve_checkbox_write(current: str, planned: str) -> str:
+    """If current cell is multi-□ and planned is a short choice, toggle marks only."""
+    planned_s = (planned or "").strip()
+    if not planned_s:
+        return planned_s
+    current = collapse_duplicated_checkbox_line(current or "")
+    if cell_looks_like_multi_checkbox(current):
+        # Agent mistakenly put full rewritten line without boxes — still try tokens
+        if count_box_marks(planned_s) >= 2:
+            # Already a checkbox line: normalize to single selection if one ☑ else apply from labels with ☑
+            checked = [m.group(3) for m in MULTI_CHECKBOX_ITEM_RE.finditer(planned_s) if m.group(1) in "☑✓"]
+            if checked:
+                out = apply_multi_checkbox(current, checked)
+                return out if out is not None else planned_s
+            # planned is full checkbox template — prefer applying choices embedded as ☑, else use as-is if same options
+            out = apply_multi_checkbox(current, planned_s)
+            return out if out is not None else collapse_duplicated_checkbox_line(planned_s)
+        out = apply_multi_checkbox(current, planned_s)
+        if out is not None:
+            return out
+        # Refuse to wipe template with a bare label
+        return current
+    if has_checkbox_marks(current) and planned_s in {"是", "否", "true", "false", "yes", "no"}:
+        choice = coerce_bool(planned_s)
+        if choice is not None:
+            return apply_checkbox_choice(current, choice)
+    return planned_s
+
+
+def checkbox_write_needed(current: str, planned: str) -> bool:
+    """True when write should use minimal-diff checkbox path."""
+    cur = collapse_duplicated_checkbox_line(current or "")
+    return cell_looks_like_multi_checkbox(cur) or has_checkbox_marks(cur)
+
+
 def apply_inline_rank(text: str, rank: Any, total: Any) -> str:
     return INLINE_RANK_RE.sub(lambda m: f"{m.group(1)}{rank} / {total}（名次/总人数）", text, count=1)
 
@@ -1104,6 +1225,15 @@ def render_slot_text(slot: dict[str, Any], kb_flat: dict[str, Any]) -> tuple[str
                 continue
             return key, apply_checkbox_choice(current, choice), raw
         return None, None, None
+
+    if kind == "checkbox_group":
+        kb_key, value = lookup_kb_value(label_norm, kb_flat)
+        if kb_key is None or value is None:
+            return None, None, None
+        text = apply_multi_checkbox(current, value)
+        if text is None:
+            return None, None, None
+        return kb_key, text, value
 
     if kind == "inline_rank":
         rank = kb_flat.get("rank")

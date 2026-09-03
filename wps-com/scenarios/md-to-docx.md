@@ -1,28 +1,28 @@
-﻿# 场景：Markdown → docx（OpenWorker 桥）
+# 场景：Markdown → docx（可选桥，非默认）
 
-OpenWorker 常见产物是 **Markdown**；后续填表、润色、学校套版都要 **.docx**。  
-本场景用 `python-docx` 做**粗转**（不必开 WPS），不替代学校排版。
+**非默认写稿路径。** 写稿默认走 WPS COM（见 [author.md](author.md)）。  
+职责边界见 [word-com/SKILL.md](../../word-com/SKILL.md#python-docx-与-word-com-职责必守)：**python-docx 只负责本场景；转完后必须用 WPS COM。**
 
-与 [word-com/scenarios/md-to-docx.md](../../word-com/scenarios/md-to-docx.md) **同一脚本能力**；转完后用本 skill 的 WPS COM 打开/润色/填表。
+与 [word-com/scenarios/md-to-docx.md](../../word-com/scenarios/md-to-docx.md) 同一脚本能力；转完后用本 skill 的 WPS COM 打开/润色/填表。
 
 ## 何时用
 
-- 会话里已有 / 刚写好的 `.md`，要变成可打开的 `.docx`
-- 再接：润色（revise）、填表、或 `*-thesis-format`（COM 路径用 wps-com）
+- 已有 `.md`，要变成 `.docx`
+- 用户明确「md 转 word / 导出 docx」
 
-## 何时不用
+## 何时不用（默认）
 
-- 已有 .doc/.docx 来稿 → 直接 revise / form-fill / cupk
-- 需要完美还原 MD（HTML、脚注、嵌套列表、图片）→ 本脚本不承诺
+- 「写一篇 / 生成文档」→ [author.md](author.md)，不要先造 md 再转
+- 已有 .doc/.docx → revise / form-fill / cupk
 
 ## Agent 硬流程
 
 ```text
-1. 确认会话工作区中的 article.md（用户来稿只读时先复制到会话目录）
+1. 确认 .md（只读来稿先复制到会话目录）
 2. python <resources_path>/scripts/md_to_docx.py article.md --out article.docx --print
-3. 需要学校格式 → 加载 *-thesis-format，把 article.docx 当「来稿」；COM 用 wps-com
-4. 需要润色 → scenarios/revise.md
-5. 禁止在未转 docx 前宣称「已按论文格式排好」
+3. 套版 → *-thesis-format；COM 用 wps-com
+4. 润色 → revise.md
+5. 禁止把写稿默认做成 md→docx
 ```
 
 ## 命令
@@ -43,4 +43,3 @@ python <resources_path>/scripts/md_to_docx.py "article.md" --out "article.docx" 
 | `**粗**` `*斜*` `` `代码` `` | 复杂链接样式 |
 | 简单 GFM 表格 | 合并单元格 |
 | 围栏代码块 | LaTeX / OMath |
-

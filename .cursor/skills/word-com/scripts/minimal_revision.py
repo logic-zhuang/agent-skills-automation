@@ -25,6 +25,14 @@ from typing import Any
 
 import win32com.client as win32
 
+from word_session import (
+    WORD_PROGID,
+    app_install_path,
+    attach_word,
+    is_wps_application,
+    open_doc,
+)
+
 wdCollapseEnd = 0
 
 
@@ -32,52 +40,17 @@ class MinimalRevisionError(RuntimeError):
     pass
 
 
-def attach_word(*, visible: bool = True) -> Any:
-    try:
-        word = win32.GetActiveObject("Word.Application")
-    except Exception:
-        word = win32.DispatchEx("Word.Application")
-    word.Visible = bool(visible)
-    word.DisplayAlerts = 0
-    try:
-        word.ScreenUpdating = True
-    except Exception:
-        pass
-    return word
-
-
-def find_open_doc(word: Any, path: Path) -> Any | None:
-    target = str(path.resolve()).lower()
-    for i in range(1, word.Documents.Count + 1):
-        d = word.Documents(i)
-        try:
-            if str(Path(d.FullName).resolve()).lower() == target:
-                return d
-        except Exception:
-            continue
-    return None
-
-
-def open_doc(word: Any, path: Path) -> Any:
-    path = path.resolve()
-    if not path.exists():
-        raise FileNotFoundError(path)
-    doc = find_open_doc(word, path)
-    if doc is None:
-        doc = word.Documents.Open(str(path), ReadOnly=False)
-    try:
-        word.Activate()
-        doc.Activate()
-    except Exception:
-        pass
-    return doc
-
-
 def connect_active() -> tuple[Any, Any]:
     try:
-        word = win32.GetActiveObject("Word.Application")
+        word = win32.GetActiveObject(WORD_PROGID)
     except Exception as exc:
-        raise MinimalRevisionError("找不到正在运行的 Word，请先打开 Word。") from exc
+        raise MinimalRevisionError("找不到正在运行的 Word，请先打开 Microsoft Word。") from exc
+    if is_wps_application(word):
+        raise MinimalRevisionError(
+            "当前 Word.Application 实际是 WPS "
+            f"(Path={app_install_path(word) or '?'})。"
+            "请关闭 WPS 后打开 Microsoft Word，或改用 wps-com skill。"
+        )
     try:
         doc = word.ActiveDocument
         if doc is None:
@@ -99,6 +72,24 @@ def get_paragraph(doc: Any, paragraph_number: int) -> Any:
 
 def enable_tracking(doc: Any) -> None:
     doc.TrackRevisions = True
+    try:
+        doc.ShowRevisions = True
+    except Exception:
+        pass
+
+
+def force_all_markup_view(word: Any) -> None:
+    """Make deletions/insertions visible (All Markup), not silent Final/No Markup."""
+    try:
+        view = word.ActiveWindow.View
+        view.ShowRevisionsAndComments = True
+        view.RevisionsView = 0  # wdRevisionsViewFinal — with markup shown
+        try:
+            view.RevisionsFilter.Markup = 2  # wdRevisionsMarkupAll
+        except Exception:
+            pass
+    except Exception:
+        pass
 
 
 def replace_range_minimal(doc: Any, match: Any, old: str, new: str) -> None:
@@ -319,9 +310,19 @@ def main(argv: list[str] | None = None) -> int:
         else:
             parser.error("need --job, --paragraph, or --replace")
 
-        summary["revisions"] = doc.Revisions.Count
+        force_all_markup_view(word)
+        summary["revisions"] = int(doc.Revisions.Count)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
-        print("TrackRevisions=True; 请在 Word 审阅中接受/拒绝。未自动 AcceptAll。")
+        print(
+            "TrackRevisions=True; 显示=所有标记；"
+            "删除=删除线（改前），插入=下划线（改后）。请接受/拒绝。未 AcceptAll。"
+        )
+        if summary["revisions"] == 0:
+            print(
+                "warning: Revisions.Count=0 — 若内容变了却无修订，"
+                "可能写回前 TrackRevisions 未生效或改走了静默路径。",
+                file=sys.stderr,
+            )
         if args.draft:
             draft = Path(args.draft).resolve()
             doc.SaveAs2(str(draft))

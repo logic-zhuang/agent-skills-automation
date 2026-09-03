@@ -15,11 +15,12 @@
 | `Quit()` | 退出 Word；有未存文档可能弹窗，先 Close |
 | `Version` | 如 `"16.0"` |
 
-挂接：
+挂接（统一走 `word_session.attach_word`）：
 
-- 已有 Word 窗口：`win32.GetActiveObject("Word.Application")`
-- 新开独立实例：`win32.DispatchEx("Word.Application")`
+- 已有 **真** Word 窗口：`GetActiveObject("Word.Application")`
+- 新开独立实例：`DispatchEx("Word.Application")`
 - 避免 `Dispatch("Word.Application")` 绑到坏掉的 `gen_py` 缓存
+- **WPS 伪装**：WPS 常把自身挂进 ROT 并自称 `Word.Application`（`Name`/`Caption` 像 Word，但 `Path` 在 Kingsoft/WPS Office）。`attach_word` 按 `Path` 拒绝复用，改 `DispatchEx`；若 `DispatchEx` 仍落到 WPS → 报错，转 **wps-com**（`Kwps.Application`），本 skill 不驱动 WPS
 
 ## Document
 
@@ -325,3 +326,11 @@ src.Close(False)
 - 异常后杀残留 `WINWORD`，否则文件锁定。
 - `gen_py` 损坏时删 `%TEMP%\gen_py` 或 `AppData\Local\Temp\gen_py` 再 DispatchEx。
 - 不要并行两个脚本打同一 `.docx`。
+
+## python-docx 与 COM 边界
+
+完整职责表见 [SKILL.md](SKILL.md)「python-docx 与 Word COM 职责」。此处只列 COM 参考范围：
+
+- **本文档 + 本 skill 脚本（除 `md_to_docx.py`）** → 必须 Word COM、`Visible=True` 时用户可在窗口即时看改动。
+- **`md_to_docx.py`（python-docx）** → 离线写盘；**不开 Word**；无 TrackRevisions；转完后用 `com_session` / `attach_word` 打开再走 COM 流程。
+- **禁止** 对同一 docx 在 COM 与 python-docx 之间来回改。

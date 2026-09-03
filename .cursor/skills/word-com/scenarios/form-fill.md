@@ -38,6 +38,25 @@
 6. 用户审阅 draft；确认后再对 draft --save；禁止 AcceptAll
 ```
 
+## 多选 □ 硬规则（必守）
+
+表内常见：`□农应 □农往 □城应 □城往`、`□统一招生 □国家专项 …`
+
+| 正确 | 错误 |
+|------|------|
+| 只把目标项 `□` 改成 `☑`，**保留全部选项文字** | 删掉其他选项，单元格只剩「城应」 |
+| fill 可写短标签 `城应`；`fill_form` 会按当前格模板勾选 | 手写整格覆盖成无 □ 的纯文本 |
+
+引擎：`fill_mode=checkbox_group` + `apply_multi_checkbox`；写入前 `resolve_checkbox_write` 兜底。  
+写入时对多选格**暂停 TrackRevisions** 再整格写回（避免修订模式下出现「城应 + 旧选项箭头/重复」）；其它字段仍正常开修订。
+
+## Word 进程硬规则（本 skill）
+
+- **只**通过 `word_session.attach_word` → `Word.Application` 打开/编辑  
+- **禁止** `start draft.docx` / 资源管理器打开（会落到系统默认，常为 **WPS**）
+- 若用户环境只有 WPS → 转 **wps-com**，不要假装用了 Word
+- `attach_word` 会拒绝 Path 落在 Kingsoft/WPS 的伪 `Word.Application`；回复写 `backend: Word.Application` 时对照脚本的 `path=`（须为 Office 的 WINWORD 目录）
+
 ## 命令
 
 ```bash

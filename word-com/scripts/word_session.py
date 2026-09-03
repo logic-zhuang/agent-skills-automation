@@ -10,6 +10,23 @@ import win32com.client as win32
 
 wdCharacter = 1
 
+WORD_PROGID = "Word.Application"
+
+# WPS often registers itself as Word.Application in the ROT; detect via install path.
+_WPS_PATH_MARKERS = (
+    "kingsoft",
+    "\\wps office\\",
+    "/wps office/",
+    "\\wps office/",
+)
+
+_last_backend: str | None = None
+
+
+def backend_progid() -> str | None:
+    """ProgID reported after the last successful attach_word call."""
+    return _last_backend
+
 
 def _ping_word(word: Any) -> None:
     """Raise if the COM proxy is stale (e.g. Word just Quit in another process)."""
@@ -17,16 +34,67 @@ def _ping_word(word: Any) -> None:
     _ = word.Documents.Count
 
 
+def app_install_path(app: Any) -> str:
+    try:
+        return str(app.Path or "")
+    except Exception:
+        return ""
+
+
+def is_wps_application(app: Any) -> bool:
+    """True when a COM app claiming Word.Application is actually WPS Writer."""
+    path = app_install_path(app).lower().replace("/", "\\")
+    if any(marker in path for marker in _WPS_PATH_MARKERS):
+        return True
+    # Some builds expose Build like 12.1.0.xxxxx under Kingsoft only; path is primary.
+    return False
+
+
+def _wps_hijack_error(path: str) -> RuntimeError:
+    return RuntimeError(
+        "Word.Application resolved to WPS Writer "
+        f"(Path={path or '?'}), not Microsoft Word. "
+        "Close WPS or use the wps-com skill (Kwps.Application). "
+        "word-com does not drive WPS."
+    )
+
+
+def _try_active_word() -> Any | None:
+    """Return running Microsoft Word, or None if absent / is WPS masquerade."""
+    try:
+        word = win32.GetActiveObject(WORD_PROGID)
+    except Exception:
+        return None
+    _ping_word(word)
+    if is_wps_application(word):
+        return None
+    return word
+
+
+def _dispatch_real_word() -> Any:
+    """Start a new Word.Application via LocalServer32; refuse WPS hijack."""
+    word = win32.DispatchEx(WORD_PROGID)
+    _ping_word(word)
+    if is_wps_application(word):
+        raise _wps_hijack_error(app_install_path(word))
+    return word
+
+
 def attach_word(*, visible: bool = True, retries: int = 2) -> Any:
+    """Attach Microsoft Word only.
+
+    Skips GetActiveObject when the ROT entry is WPS pretending to be Word,
+    then DispatchEx to launch real WINWORD. Never falls back to Kwps.Application.
+    """
+    global _last_backend
+
     word: Any | None = None
     last_err: Exception | None = None
     for attempt in range(retries + 1):
         try:
-            try:
-                word = win32.GetActiveObject("Word.Application")
-            except Exception:
-                word = win32.DispatchEx("Word.Application")
-            _ping_word(word)
+            word = _try_active_word()
+            if word is None:
+                word = _dispatch_real_word()
             break
         except Exception as exc:
             last_err = exc
@@ -34,14 +102,22 @@ def attach_word(*, visible: bool = True, retries: int = 2) -> Any:
             if attempt < retries:
                 time.sleep(0.4 * (attempt + 1))
                 continue
-            raise RuntimeError("Word COM unavailable") from last_err
+            if isinstance(last_err, RuntimeError) and "WPS Writer" in str(last_err):
+                raise last_err
+            raise RuntimeError(
+                "Microsoft Word COM unavailable (Word.Application). "
+                "Install/repair Microsoft Office Word. "
+                "If only WPS is installed, use the wps-com skill instead."
+            ) from last_err
 
+    assert word is not None
     word.Visible = bool(visible)
     word.DisplayAlerts = 0
     try:
         word.ScreenUpdating = True
     except Exception:
         pass
+    _last_backend = WORD_PROGID
     return word
 
 
@@ -92,7 +168,20 @@ def para_text(p) -> str:
 
 
 def cell_text(cell) -> str:
-    return para_text(cell.Range.Paragraphs(1))
+    """Plain cell text; prefer Final view so deleted TrackRevisions ghosts are excluded."""
+    try:
+        doc = cell.Range.Document
+        app = doc.Application
+        view = app.ActiveWindow.View
+        # wdRevisionsViewFinal = 0
+        prev = view.RevisionsView
+        view.RevisionsView = 0
+        try:
+            return para_text(cell.Range.Paragraphs(1))
+        finally:
+            view.RevisionsView = prev
+    except Exception:
+        return para_text(cell.Range.Paragraphs(1))
 
 
 def clone_for_edit(word: Any, src: Path, dest: Path) -> Path:

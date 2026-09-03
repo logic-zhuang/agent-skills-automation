@@ -55,6 +55,24 @@ def get_paragraph(doc: Any, paragraph_number: int) -> Any:
 
 def enable_tracking(doc: Any) -> None:
     doc.TrackRevisions = True
+    try:
+        doc.ShowRevisions = True
+    except Exception:
+        pass
+
+
+def force_all_markup_view(app: Any) -> None:
+    """Make deletions/insertions visible (All Markup), not silent Final/No Markup."""
+    try:
+        view = app.ActiveWindow.View
+        view.ShowRevisionsAndComments = True
+        view.RevisionsView = 0
+        try:
+            view.RevisionsFilter.Markup = 2
+        except Exception:
+            pass
+    except Exception:
+        pass
 
 
 def replace_range_minimal(doc: Any, match: Any, old: str, new: str) -> None:
@@ -273,9 +291,19 @@ def main(argv: list[str] | None = None) -> int:
         else:
             parser.error("need --job, --paragraph, or --replace")
 
-        summary["revisions"] = doc.Revisions.Count
+        force_all_markup_view(wps)
+        summary["revisions"] = int(doc.Revisions.Count)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
-        print("TrackRevisions=True; 请在 WPS 审阅中接受/拒绝。未自动 AcceptAll。")
+        print(
+            "TrackRevisions=True; 显示=所有标记；"
+            "删除=删除线（改前），插入=下划线（改后）。请接受/拒绝。未 AcceptAll。"
+        )
+        if summary["revisions"] == 0:
+            print(
+                "warning: Revisions.Count=0 — 若内容变了却无修订，"
+                "可能写回前 TrackRevisions 未生效或改走了静默路径。",
+                file=sys.stderr,
+            )
         if args.draft:
             draft = Path(args.draft).resolve()
             doc.SaveAs2(str(draft))

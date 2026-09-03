@@ -1,7 +1,7 @@
 # 场景：填表（Agent 主导）
 
-用户上传**原样**表格文档 + 知识库档案。  
-系统：`inspect` 报**事实** → **Agent 定策略 / 出 fill 计划** → 脚本只写入工作副本（WPS COM）。
+用户上传**原样** Word 表 + 知识库档案。  
+系统：`inspect` 报**事实** → **Agent 定策略 / 出 fill 计划** → 脚本只写入工作副本。
 
 用户**不写** JSON（除非调试）。`slots.json` / `fill.json` 为 Agent/系统产物。
 
@@ -34,9 +34,27 @@
 3. 先看 facts.layout_hint 与 coverage（勿用 unmatched_kb 判断扫全）
 4. Agent 出 fill.json（可采纳/修改 suggestions）；低置信 → 追问
 5. auto_fill_form source.docx --fill fill.json --draft <会话>/draft.docx
-   （旧表：--kb ... --auto-suggest --draft ...）
+   （旧 demo：--kb ... --auto-suggest --draft ...）
 6. 用户审阅 draft；确认后再对 draft --save；禁止 AcceptAll
 ```
+
+## 多选 □ 硬规则（必守）
+
+表内常见：`□农应 □农往 □城应 □城往`、`□统一招生 □国家专项 …`
+
+| 正确 | 错误 |
+|------|------|
+| 只把目标项 `□` 改成 `☑`，**保留全部选项文字** | 删掉其他选项，单元格只剩「城应」 |
+| fill 可写短标签 `城应`；`fill_form` 会按当前格模板勾选 | 手写整格覆盖成无 □ 的纯文本 |
+
+引擎：`fill_mode=checkbox_group` + `apply_multi_checkbox`；写入前 `resolve_checkbox_write` 兜底。
+
+## WPS 进程硬规则（本 skill）
+
+- **只**通过 `word_session.attach_wps` → `Kwps.Application` 打开/编辑  
+- **禁止** `start draft.docx` / 资源管理器打开（会落到系统默认，常为 **WPS**）  
+- 若用户环境只有 Word → 转 **word-com**，不要假装用了 Word  
+- 跑完可在回复写明：`backend: Kwps.Application`（或脚本打印的 ProgID）
 
 ## 命令
 
@@ -50,7 +68,7 @@ python <resources_path>/scripts/auto_fill_form.py "form.docx" --fill fill.json -
 # 仅建议报告、不写入
 python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json --plan plan.json
 
-# 旧表启发式
+# 旧表启发式（回归）
 python <resources_path>/scripts/auto_fill_form.py "form.docx" --kb profile.json --auto-suggest --draft draft.docx
 ```
 

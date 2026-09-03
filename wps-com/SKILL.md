@@ -1,9 +1,6 @@
 ---
 name: WPS文档操作
-description: >-
-  Windows WPS 文字 COM 执行层：打开/复用文档、Markdown→docx（md_to_docx）、inspect、
-  最小修订（TrackRevisions+diff）、填表与混合文档。不含学校论文格式。用户提到 WPS、
-  金山、Kwps、WPS 文字、Markdown 转 Word、填表、润色、批改、改稿、修订、track changes 时使用。
+description: Windows WPS COM（主路径：打开 WPS 可见改稿）。python-docx 仅 md→粗 docx 桥；写稿/润色/填表/修订一律 COM。仅挂 WPS 不回退 Word。提及 WPS、金山、Kwps、填表、润色、批改、修订时使用。
 source: repo
 ---
 
@@ -11,7 +8,27 @@ source: repo
 
 Windows + WPS Office 文字 + `pywin32`。**只负责怎么动 WPS**，不含学校/院系格式规则。
 
-与 [word-com](../word-com/SKILL.md) **产品能力对齐**（MD→docx / 润色 / 填表 / hybrid），但 **仅挂接 WPS**（`Kwps.Application` / `wps.Application`），**不回退 Microsoft Word**。
+与 [word-com](../word-com/SKILL.md) **产品能力对齐**（COM 写稿 / 润色 / 填表 / hybrid），但 **仅挂接 WPS**（`Kwps.Application` / `wps.Application`），**不回退 Microsoft Word**。
+
+## python-docx 与 WPS COM 职责（必守）
+
+与 [word-com/SKILL.md](../word-com/SKILL.md#python-docx-与-word-com-职责必守) **同一分工**；此处 ProgID 换为 WPS。
+
+| | **python-docx** | **WPS COM**（`Kwps.Application` / `wps.Application`） |
+|--|-----------------|--------------------------------------------------------|
+| **Word/WPS 要不要开** | **不要** | **要**（`attach_wps`；默认 `Visible=True`） |
+| **用户能否即时看到改动** | **不能** | **能** |
+| **修订痕迹** | **无** | **有** |
+| **本 skill 脚本** | **仅** `md_to_docx.py` | **其余全部** |
+
+```text
+写稿 / 填表 / 润色 / 用户在 WPS 里审改  →  WPS COM（默认）
+用户已有 .md → 粗 docx                    →  md_to_docx → 再用 WPS COM 打开
+```
+
+**禁止** 同一 docx 在 COM 与 python-docx 之间来回改。用户要「打开就能看到效果」→ **只能 COM** + `Visible=True`。
+
+**OpenWorker 写稿默认：COM 直接生成/写入 `.docx`**（见 [scenarios/author.md](scenarios/author.md)）。`md_to_docx` 仅当用户已有 `.md` 或明确要求转换。
 
 论文套版默认仍可走 `word-com` + `*-thesis-format`。若用户明确用 WPS 套版，须 **同时加载本 skill** 与对应学校 skill，并将 COM 脚本路径改为 `wps-com`。
 
@@ -25,10 +42,11 @@ Windows + WPS Office 文字 + `pywin32`。**只负责怎么动 WPS**，不含学
 
 | 任务 | 读哪个 skill | 跑哪个脚本 |
 |------|--------------|------------|
-| **Markdown → docx**（OpenWorker 写稿） | 本 skill → [scenarios/md-to-docx.md](scenarios/md-to-docx.md) | `scripts/md_to_docx.py` |
+| **从零写稿 / 新建 docx**（默认） | 本 skill → [scenarios/author.md](scenarios/author.md) | COM：`attach_wps` + `Documents.Add` |
 | 润色 / 批改 / 改字改段 | 本 skill → [scenarios/revise.md](scenarios/revise.md) | `scripts/minimal_revision.py` |
 | 填固定表格 | 本 skill → [scenarios/form-fill.md](scenarios/form-fill.md) | `inspect` → Agent `fill.json` → `auto_fill_form --fill --draft` |
 | 表 + 分段框架（申请书等） | 本 skill → [scenarios/hybrid.md](scenarios/hybrid.md) | `scripts/hybrid_ops.py` |
+| **已有 MD → docx**（可选） | 本 skill → [scenarios/md-to-docx.md](scenarios/md-to-docx.md) | `scripts/md_to_docx.py` |
 | 某校论文套版 | **学校 skill**（COM 路径改 wps-com） | 学校 `scripts/convert_ops.py` 等 |
 
 OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录名仍为 `wps-com`）；**用户来稿只读**；填写/修订输出写在**会话工作区**。
@@ -51,7 +69,7 @@ OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录
 
 1. **入口**：用户说 `/wps`、WPS、金山、Kwps → 用本 skill；说 Microsoft Word → **转** [word-com](../word-com/SKILL.md)。**永不**回退 `Word.Application`。
 2. **场景表命中即停**（下一节）；缺路径 / 未装 WPS → 报错说明，不假装成功。
-3. **禁跳步**：填表 inspect → fill → `--draft`；润色走 `minimal_revision`；原文件只读；stdout 须能见 `backend: Kwps.Application`（或 `wps.Application`）。
+3. **禁跳步**：写稿默认 COM 直出 docx，**禁止**无必要先造 md 再转；填表 inspect → fill → `--draft`；**任何改已有正文**（含删空格/无用字符）必须 `minimal_revision`；原文件只读；stdout 须能见 `backend: Kwps.Application`（或 `wps.Application`）。用户须在 **所有标记** 下见改前（删除线）与改后（下划线）。
 4. **回复骨架**（每次）：判定场景 → 已做 → 产物路径 → 待确认 → 下一步。
 5. **不** AcceptAll；填表默认不定稿。
 
@@ -59,18 +77,20 @@ OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录
 
 按顺序匹配，命中即停：
 
-1. **Markdown 转 docx / 只有 .md 要出 docx** → [scenarios/md-to-docx.md](scenarios/md-to-docx.md)
-2. **改已有正文**（润色、批改、改几个字、改第 N 段）→ [scenarios/revise.md](scenarios/revise.md)
+1. **从零写稿 / 生成文档 / 新建 docx** → [scenarios/author.md](scenarios/author.md)（**默认**；勿先 md）
+2. **改已有正文**（润色、批改、改几个字、删无用字符/空格、改第 N 段）→ [scenarios/revise.md](scenarios/revise.md)
 3. **只填表格字段**（导员表、几项 cover 式字段）→ [scenarios/form-fill.md](scenarios/form-fill.md)
-4. **论文套版 / 某校格式 / 毕设排版**→ **转已加载的 `*-thesis-format` skill**（WPS 环境须同时加载本 skill；来稿若是 MD，先 `md_to_docx`）
+4. **论文套版 / 某校格式 / 毕设排版**→ **转已加载的 `*-thesis-format` skill**（WPS 环境须同时加载本 skill；来稿若是 MD 且要套版，再 `md_to_docx`）
 5. **上半表格 + 下面分部分正文**（申请书）→ [scenarios/hybrid.md](scenarios/hybrid.md)
-6. **不确定** → `scripts/inspect_doc.py` 探查后再判
+6. **用户已有 .md 或明确「md 转 Word」** → [scenarios/md-to-docx.md](scenarios/md-to-docx.md)
+7. **不确定** → `scripts/inspect_doc.py` 探查后再判
 
 易混：
 
+- 「写一篇 / 生成文档」→ **author（COM）**，不是 md-to-docx
 - 「把 md 转成 word」→ **md-to-docx**，不是套版
 - 「改第 2 章表述」→ **批改**（revise），不是套版
-- 「套成石大本科格式」→ 若只有 MD：先 md-to-docx，再 **学校 skill**（cupk），COM 用 wps-com
+- 「套成石大本科格式」→ 来稿已是 Word 则直接学校 skill；仅有 MD 时才先 md-to-docx；COM 用 wps-com
 - 用户说 Word 但未装 Word → 提示用本 skill（WPS）或安装 Word 后用 word-com
 
 ## 必读
@@ -79,12 +99,13 @@ OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录
 |-------------|------|
 | [reference.md](reference.md) | WPS ProgID、COM 对象、与 Word 差异 |
 | [minimal-revision.md](minimal-revision.md) | 最小修订策略详解 |
-| [scenarios/md-to-docx.md](scenarios/md-to-docx.md) | OpenWorker MD → 粗 docx |
+| [scenarios/author.md](scenarios/author.md) | OpenWorker 默认 COM 写稿 |
 | [scenarios/revise.md](scenarios/revise.md) | 批改流程 |
 | [scenarios/form-fill.md](scenarios/form-fill.md) | 填表：结构报告 → plan → 修订草稿 → 用户确认再定稿 |
+| [scenarios/md-to-docx.md](scenarios/md-to-docx.md) | 可选：已有 MD → 粗 docx |
 | [kb-profile.md](kb-profile.md) | 知识库 L1/L2；用户不写 JSON |
 | [scenarios/hybrid.md](scenarios/hybrid.md) | 混合文档流程 |
-| [scripts/md_to_docx.py](scripts/md_to_docx.py) | Markdown → .docx（python-docx，不必开 WPS） |
+| [scripts/md_to_docx.py](scripts/md_to_docx.py) | Markdown → .docx（非默认） |
 | [scripts/wps_session.py](scripts/wps_session.py) | attach_wps / open_doc / clone_for_edit |
 | [scripts/auto_fill_form.py](scripts/auto_fill_form.py) | 填表流水线（默认不定稿 + TrackRevisions） |
 | [scripts/inspect_form.py](scripts/inspect_form.py) | 结构报告 v2 |
@@ -98,12 +119,14 @@ OpenWorker：`load_skill("WPS文档操作")` 得 `resources_path`（技能目录
 
 ## 默认改稿策略（改已有正文）
 
-不必等用户说「最小修订」：
+不必等用户说「最小修订」。**OpenWorker 对正文的任何修改都必须留下可见修订**（含「删无用字符」）：
 
-- 用 `minimal_revision.py` + `TrackRevisions=True` + `SequenceMatcher` diff
-- 默认 **Save**（`--no-save` 才跳过）
-- **不**自动 `AcceptAll`
-- **禁止**整段 `Paragraph.Range.Text = 新全文` / `doc.Content.Text = 新全文`
+- 一律 `minimal_revision.py`：`TrackRevisions=True` + `SequenceMatcher`；脚本会切到 **所有标记**
+- 删字符 = `--replace "待删" ""` 或段级 old→new（diff 只 `Delete`），应见**删除线**，不是字直接消失
+- 默认 **Save**（`--no-save` 才跳过）；**不** `AcceptAll`
+- **禁止**：整段 `Range.Text = 新全文`、静默 `Delete`/`TypeBackspace`、关修订再改
+
+例外（可无修订痕迹）：新建空白段、学校 `fill-section`、用户明确说「直接覆盖不要修订」。
 
 ```bash
 python <resources_path>/scripts/minimal_revision.py "doc.docx" --paragraph 2 --new "润色后段落"
@@ -114,8 +137,9 @@ python <resources_path>/scripts/minimal_revision.py --active --replace "旧" "�
 ## 工作流程
 
 ```
-- [ ] 确认 WPS Office + pywin32（未装 WPS 则报错，不切 Word）；MD 转 docx 另需 python-docx
-- [ ] 仅有 Markdown → md_to_docx.py → 会话目录 .docx，再进入后续场景
+- [ ] 确认 WPS Office + pywin32（未装 WPS 则报错，不切 Word）
+- [ ] 写稿 → COM 直出会话目录 .docx（author）；勿默认 md→docx
+- [ ] 仅当用户已有 MD / 明确转换 → md_to_docx.py
 - [ ] attach_wps：GetActiveObject 复用；禁止同路径二次 Open
 - [ ] DisplayAlerts=0；Visible=True
 - [ ] 填表 → parse_profile（若需）→ inspect → plan → auto_fill（--draft，勿默认 --save）→ 用户审阅确认后再定稿
@@ -126,7 +150,7 @@ python <resources_path>/scripts/minimal_revision.py --active --replace "旧" "�
 ## COM 硬规则
 
 1. COM 集合 **1-based**；段末 `\r`，单元格 `\x07`。
-2. **改已有正文** → `minimal_revision.py`。**新建/fill-section** → `MoveEnd(1,-1)` 再 `Text = …`。
+2. **改已有正文**（含删字）→ 只能 `minimal_revision.py`。**禁止**静默删除。**新建/fill-section** → `MoveEnd(1,-1)` 再 `Text = …`。
 3. 中英混排：`Font.NameFarEast` + `Font.NameAscii`；不设 `NameOther`。
 4. 样式名带空格：`"标题 1"`、`"正文"`（WPS 中文版与 Word 通常一致，以 `inspect_doc` 为准）。
 5. 页码：`Footers(i).PageNumbers.RestartNumberingAtSection`；不写 `PageSetup.RestartPageNumbering`。
@@ -154,9 +178,10 @@ stdout 应含 `backend: Kwps.Application` 或 `wps.Application`。
 
 | 能力 | word-com | wps-com |
 |------|----------|---------|
-| MD → docx | `md_to_docx.py` | **同脚本** |
+| 默认写稿 | COM `author` | COM `author` |
+| MD → docx（可选） | `md_to_docx.py` | **同脚本** |
 | 润色 / 填表 / hybrid | 有 | **有**（`wps_session`） |
 | 学校套版 COM | 默认 | 可选（改路径） |
 
 页眉奇偶、分节、域、OMath、TrackRevisions、可见窗口 → 必须 COM（WPS 或 Word 二选一）。  
-**Markdown → 粗 docx**：`scripts/md_to_docx.py`（不必开 WPS）。
+**路径分工**见 [word-com/SKILL.md](../word-com/SKILL.md#python-docx-与-word-com-职责必守)：`md_to_docx` 仅离线桥，其余一律 COM。

@@ -2,9 +2,9 @@
 """Fill table cells from JSON. Default: TrackRevisions on, do NOT finalize Save.
 
 Usage:
-  python wps-com/scripts/fill_form.py path/to.docx --json fill.json
-  python wps-com/scripts/fill_form.py path/to.docx --json fill.json --save
-  python wps-com/scripts/fill_form.py path/to.docx --json fill.json --draft out.docx
+  python word-com/scripts/fill_form.py path/to.docx --json fill.json
+  python word-com/scripts/fill_form.py path/to.docx --json fill.json --save
+  python word-com/scripts/fill_form.py path/to.docx --json fill.json --draft out.docx
 """
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from com_cells import replace_cell_text_keep_format
-from form_utils import verify_fill
+from com_cells import replace_cell_text_keep_format, replace_cell_text_minimal_diff
+from form_utils import checkbox_write_needed, resolve_checkbox_write, verify_fill
 from wps_session import attach_wps, cell_text, open_doc
 
 
@@ -30,8 +30,18 @@ def fill_by_cells(doc, table_index: int, cells: list[dict]) -> int:
         t_idx = int(item.get("table") or table_index)
         t = doc.Tables(t_idx)
         r, c = int(item["row"]), int(item.get("col", 2))
-        text = item.get("text", "")
-        replace_cell_text_keep_format(t.Cell(r, c), str(text))
+        planned = str(item.get("text", ""))
+        try:
+            current = cell_text(t.Cell(r, c))
+        except Exception:
+            current = ""
+        # Multi-□ / 是□否□：只改勾选，禁止删掉其他选项
+        text = resolve_checkbox_write(current, planned)
+        cell = t.Cell(r, c)
+        if checkbox_write_needed(current, planned) or text != planned:
+            replace_cell_text_minimal_diff(cell, str(text))
+        else:
+            replace_cell_text_keep_format(cell, str(text))
         n += 1
     return n
 
@@ -66,7 +76,7 @@ def fill_form(doc, payload: dict) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Fill WPS table (review-first)")
+    parser = argparse.ArgumentParser(description="Fill Word table (review-first)")
     parser.add_argument("path")
     parser.add_argument("--json", required=True)
     parser.add_argument("--hidden", action="store_true")
@@ -84,8 +94,8 @@ def main(argv: list[str] | None = None) -> int:
 
     path = Path(args.path)
     payload = json.loads(Path(args.json).read_text(encoding="utf-8"))
-    wps = attach_wps(visible=not args.hidden)
-    doc = open_doc(wps, path)
+    word = attach_wps(visible=not args.hidden)
+    doc = open_doc(word, path)
 
     if not args.no_track:
         try:
@@ -116,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
         "track_revisions": not args.no_track,
         "review_required": not args.save,
         "message": (
-            "已写入（修订开启）。请在 WPS 审阅中核对；确认后使用 --save 定稿，禁止 AcceptAll。"
+            "已写入（修订开启）。请在 Word 审阅中核对；确认后使用 --save 定稿，禁止 AcceptAll。"
             if not args.save
             else "已定稿 Save。仍建议人工核对；未自动 AcceptAll。"
         ),

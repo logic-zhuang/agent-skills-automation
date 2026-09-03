@@ -13,49 +13,12 @@ import argparse
 import sys
 from pathlib import Path
 
-import win32com.client as win32
-
-
-def attach_word(visible: bool = True):
-    try:
-        word = win32.GetActiveObject("Word.Application")
-    except Exception:
-        word = win32.DispatchEx("Word.Application")
-    word.Visible = bool(visible)
-    word.DisplayAlerts = 0
-    try:
-        word.ScreenUpdating = True
-    except Exception:
-        pass
-    return word
-
-
-def find_open_doc(word, path: Path):
-    target = str(path.resolve()).lower()
-    for i in range(1, word.Documents.Count + 1):
-        d = word.Documents(i)
-        try:
-            full = str(Path(d.FullName).resolve()).lower()
-        except Exception:
-            continue
-        if full == target:
-            return d
-    return None
-
-
-def open_doc(word, path: Path, read_only: bool = False):
-    path = path.resolve()
-    if not path.exists():
-        raise FileNotFoundError(path)
-    doc = find_open_doc(word, path)
-    if doc is None:
-        doc = word.Documents.Open(str(path), ReadOnly=read_only)
-    try:
-        word.Activate()
-        doc.Activate()
-    except Exception:
-        pass
-    return doc
+from word_session import (
+    app_install_path,
+    attach_word,
+    backend_progid,
+    open_doc,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -68,7 +31,9 @@ def main(argv: list[str] | None = None) -> int:
     path = Path(args.path)
     word = attach_word(visible=not args.hidden)
     doc = open_doc(word, path, read_only=False)
+    print("backend", backend_progid() or "Word.Application")
     print("app", word.Version)
+    print("path", app_install_path(word))
     print("doc", doc.FullName)
     print("paragraphs", doc.Paragraphs.Count)
     print("sections", doc.Sections.Count)

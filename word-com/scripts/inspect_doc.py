@@ -12,38 +12,14 @@ import json
 import sys
 from pathlib import Path
 
-import win32com.client as win32
-
-
-def attach_word():
-    reused = True
-    try:
-        word = win32.GetActiveObject("Word.Application")
-    except Exception:
-        reused = False
-        word = win32.DispatchEx("Word.Application")
-    word.DisplayAlerts = 0
-    # Reuse visible session: do not hide or Quit Word afterward.
-    if not reused:
-        word.Visible = False
-    else:
-        try:
-            word.ScreenUpdating = True
-        except Exception:
-            pass
-    return word, reused
+from word_session import attach_word, find_open_doc
 
 
 def open_readonly(word, path: Path):
     path = path.resolve()
-    target = str(path).lower()
-    for i in range(1, word.Documents.Count + 1):
-        d = word.Documents(i)
-        try:
-            if str(Path(d.FullName).resolve()).lower() == target:
-                return d, False
-        except Exception:
-            continue
+    existing = find_open_doc(word, path)
+    if existing is not None:
+        return existing, False
     doc = word.Documents.Open(str(path), ReadOnly=True)
     return doc, True
 
@@ -65,7 +41,9 @@ def main(argv: list[str] | None = None) -> int:
         print("skip Word lock file", path, file=sys.stderr)
         return 2
 
-    word, reused_word = attach_word()
+    # Headless-friendly: do not leave a new Word window up after inspect.
+    word = attach_word(visible=False)
+    docs_before = word.Documents.Count
     owned = False
     try:
         doc, owned = open_readonly(word, path)
@@ -172,8 +150,8 @@ def main(argv: list[str] | None = None) -> int:
         if owned:
             doc.Close(False)
     finally:
-        # Only tear down a Word instance we started for headless inspect.
-        if owned and not reused_word:
+        # Quit only if we opened the sole document on a Word we brought up empty.
+        if owned and docs_before == 0:
             try:
                 if word.Documents.Count == 0:
                     word.Quit()

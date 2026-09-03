@@ -15,8 +15,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from com_cells import replace_cell_text_keep_format
-from form_utils import verify_fill
+from com_cells import replace_cell_text_keep_format, replace_cell_text_minimal_diff
+from form_utils import checkbox_write_needed, resolve_checkbox_write, verify_fill
 from word_session import attach_word, cell_text, open_doc
 
 
@@ -30,8 +30,18 @@ def fill_by_cells(doc, table_index: int, cells: list[dict]) -> int:
         t_idx = int(item.get("table") or table_index)
         t = doc.Tables(t_idx)
         r, c = int(item["row"]), int(item.get("col", 2))
-        text = item.get("text", "")
-        replace_cell_text_keep_format(t.Cell(r, c), str(text))
+        planned = str(item.get("text", ""))
+        try:
+            current = cell_text(t.Cell(r, c))
+        except Exception:
+            current = ""
+        # Multi-□ / 是□否□：只改勾选，禁止删掉其他选项
+        text = resolve_checkbox_write(current, planned)
+        cell = t.Cell(r, c)
+        if checkbox_write_needed(current, planned) or text != planned:
+            replace_cell_text_minimal_diff(cell, str(text))
+        else:
+            replace_cell_text_keep_format(cell, str(text))
         n += 1
     return n
 

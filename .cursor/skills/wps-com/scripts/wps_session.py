@@ -117,7 +117,19 @@ def para_text(p) -> str:
 
 
 def cell_text(cell) -> str:
-    return para_text(cell.Range.Paragraphs(1))
+    """Plain cell text; prefer Final view so deleted TrackRevisions ghosts are excluded."""
+    try:
+        doc = cell.Range.Document
+        app = doc.Application
+        view = app.ActiveWindow.View
+        prev = view.RevisionsView
+        view.RevisionsView = 0
+        try:
+            return para_text(cell.Range.Paragraphs(1))
+        finally:
+            view.RevisionsView = prev
+    except Exception:
+        return para_text(cell.Range.Paragraphs(1))
 
 
 def clone_for_edit(wps: Any, src: Path, dest: Path) -> Path:
